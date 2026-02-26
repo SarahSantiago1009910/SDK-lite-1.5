@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/stylesheet.css"
+      media="screen"
+    />
+    <title>Pigeonz SW</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <!-- Container da Logo -->
+
+      <img src="/static/pigeon.png" alt="Logo da PIGEONZ" class="logo" />
+      <h1>Pigeonz Street wear</h1>
+      <div class="logo"></div>
+    </header>
+
+    <nav class="nav">
+      <h2>Finish your order</h2>
+    </nav>
+
+    <div class="hero">
+      <div class="product-card">
+        <img
+          src="/static/camisa.png"
+          alt="Urban Textures Tee Shirt"
+          class="product-image"
+        />
+        <h3 class="product-title">Urban Textures T-Shirt</h3>
+        <p class="product-price">USD 1.500</p>
+      </div>
+    </div>
+
+    <div class="hero">
+      <h3>Select the payment method and click continue</h3>
+      <!-- Renderizador de Checkout -->
+      <div id="checkout-container"></div>
+      <div id="checkout-form"></div>
+      <div id="checkout-form-action"></div>
+
+      <!-- Botão que irá iniciar o processo de pagamento -->
+      <button id="button-pay" class="hero-button">Continue</button>
+    </div>
+
+    <!-- First, set up the event listener -->
+    <script type="module">
+      const publicApiKey =
+        "sandbox_gAAAAABmsPEk3FoharvZ2w_FCTu61C9i6T2h8_OktdR6ABPoo0ZKOfvR3hLvR_STblCfA7X769CXTCu24jUbEhuL4J8ZzaRHPkYFCeyENFeJ_o5yo6KXWldzFCBBm5W3WGyWkjnJourLuEsi59CJ_6qlUZIDwhL4SGBmiySCf_eyiUEGSL1326eyrwfzhXpqAH3LWST4i1TTx-T3SQTeb4dUJ3I22CnKNQ2psxa7Xf-v5mVLRfAveQPrvW0UeIEgajARpUIbCemH";
+
+      async function getCheckoutSession() {
+        const response = await fetch(`/checkout/sessions`, {
+          method: "POST",
+        });
+
+        return response.json();
+      }
+
+      async function createPayment(paymentData) {
+        const response = await fetch(`/payments`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(paymentData),
+        });
+
+        return response.json();
+      }
+
+      async function initCheckout() {
+        const session = await getCheckoutSession();
+        const { checkout_session: checkoutSession, country: countryCode } =
+          session;
+
+        const yuno = await Yuno.initialize(publicApiKey);
+
+        let isPaying = false;
+
+        await yuno.startCheckout({
+          elementSelector: "#checkout-container",
+          checkoutSession,
+          countryCode,
+          language: "pt",
+          showLoading: true,
+          issuersFormEnable: true,
+          showPaymentStatus: true,
+          paymentMethodTypes: ["CLICK_TO_PAY"], 
+          renderMode: {
+            type: "element",
+            elementSelector: {
+              apmForm: "#checkout-form",
+              actionForm: "#checkout-form-action",
+
+            },
+          },
+          onLoading: (args) => {
+            console.log(args);
+          },
+          yunoPaymentResult: (status) => {
+            console.log("Payment result:", status);
+          },
+          yunoError: (message, data) => {
+            console.error("Payment error:", message, data);
+          },
+          async yunoCreatePayment(oneTimeToken) {
+            /**
+             * The createPayment function calls the backend to create a payment in Yuno.
+             * It uses the following endpoint https://docs.y.uno/reference/create-payment
+             */
+            console.log(oneTimeToken);
+            await createPayment({ oneTimeToken, checkoutSession });
+            yuno.continuePayment({ showPaymentStatus: true });
+          },
+        });
+
+        yuno.mountCheckout();
+
+        // start payment when user clicks on merchant payment button
+        const PayButton = document.querySelector("#button-pay");
+
+        PayButton.addEventListener("click", async () => {
+          yuno.startPayment();
+        });
+      }
+
+      window.addEventListener("yuno-sdk-ready", initCheckout);
+    </script>
+
+    <!-- Then load the SDK -->
+    <script src="https://sdk-web.y.uno/v1.5/main.js" defer></script>
+  </body>
+</html>

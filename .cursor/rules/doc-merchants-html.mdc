@@ -1,0 +1,43 @@
+---
+description: Padrão visual e técnico para documentos HTML em 1.doc.merchants (integração/merchants)
+globs: 1.doc.merchants/**/*.html
+alwaysApply: false
+---
+
+# Documentos HTML para merchants (padrão obrigatório)
+
+Sempre que for criado ou editado um documento em HTML para clientes/merchants (ex.: integrações Yuno), seguir este padrão. Referência: `1.doc.merchants/paypal-integracao-yuno.html`.
+
+## Onde salvar
+- **Pasta:** `1.doc.merchants/`
+- Se pedirem versão em inglês: criar também `*.en.html` na mesma pasta.
+
+## Layout e cores
+- **Fundo:** branco (`#ffffff`); cards cinza claro (`#f8f9fa`), borda esquerda colorida (azul/roxo/âmbar).
+- **Tipografia:** h1 roxo/indigo (`#4f46e5`), h2 azul (`#2563eb`), h3 roxo (`#7c3aed`), texto `#1e293b`, muted `#64748b`.
+- **Badges:** fundo claro + texto colorido (ex.: .badge.lite azul, .badge.full roxo, .badge.api teal).
+- **Fontes:** DM Sans (texto), JetBrains Mono (código).
+
+## Código inline (no meio de parágrafos)
+- **Sem caixa:** sem background e sem borda; só cor no texto.
+- Usar classes para cores estilo Cursor:
+  - `c-fn` → função/método (azul forte)
+  - `c-type` → tipo/constante (ex.: PAYPAL, REDIRECT)
+  - `c-prop` → propriedade (redirect_url, callback_url)
+  - `c-str` → string/rota
+  - `c-sel` → seletor (#id, &lt;/body&gt;)
+
+## Blocos de código (quadrantes pretos)
+- **Container:** fundo `#1e1e1e`, borda `#333`, texto base `#d4d4d4`.
+- **Syntax highlight (Cursor Dark):** script que envolve tokens em spans; CSS:
+  - `.hl-kw` #569cd6, `.hl-str` #ce9178, `.hl-com` #6a9955, `.hl-num` #b5cea8, `.hl-fn` #dcdcaa, `.hl-prop` #9cdcfe, `.hl-type` #4ec9b0.
+- Incluir o mesmo script de highlight usado no doc PayPal (placeholders para comentários/strings, depois keywords, types, props, funções, números).
+
+## PDF
+- `print-color-adjust: exact` nos elementos coloridos; `@media print` com fundo branco e mesmas cores de texto/código (inline e blocos) para impressão/export PDF.
+
+## Checklist novo doc
+1. Salvar em `1.doc.merchants/nome-do-doc.html` (e `.en.html` se pedido).
+2. Copiar a estrutura de estilo e o script de highlight do `paypal-integracao-yuno.html`.
+3. Código inline com classes `c-fn`, `c-type`, `c-prop`, etc.; blocos em `<pre><code>` para o highlight.
+4. Atualizar `1.doc.merchants/README.md` com o novo documento.

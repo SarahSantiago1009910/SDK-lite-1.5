@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/static/stylesheet.css" media="screen" />
+    <title>Pigeonz SW</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <img src="/static/pigeon.png" alt="Logo da PIGEONZ" class="logo" />
+      <h1>Pigeonz Street wear</h1>
+      <div class="logo"></div>
+    </header>
+
+    <nav class="nav">
+      <h2>Finish your order</h2>
+    </nav>
+
+    <!-- Seleção de Produto -->
+    <div class="hero">
+      <h3 style="margin-bottom: 20px;">Selecione o produto</h3>
+      <div class="products-container">
+        <div class="product-card" id="product-1" onclick="selectProduct(1)">
+          <input type="radio" name="product" value="1" id="radio-product-1" checked>
+          <img src="/static/camisa.png" alt="Urban Textures Tee Shirt" class="product-image" />
+          <h3 class="product-title">Urban Textures T-Shirt</h3>
+          <p class="product-price">R$ 20,00</p>
+          <span class="product-selected-badge">Selecionado</span>
+        </div>
+        <div class="product-card" id="product-2" onclick="selectProduct(2)">
+          <input type="radio" name="product" value="2" id="radio-product-2">
+          <img src="/static/stussy.png" alt="Stüssy T-Shirt" class="product-image" />
+          <h3 class="product-title">Stüssy T-Shirt</h3>
+          <p class="product-price">R$ 10,00</p>
+          <span class="product-selected-badge">Selecionado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout -->
+    <div class="hero">
+      <h3 style="margin-bottom: 24px;">Selecione o método de pagamento</h3>
+
+      <!-- ===== Outros métodos (Cartão, PIX, Boleto...) ===== -->
+      <div id="other-methods-section" class="yuno-style-card" style="display: none;">
+        <p class="yuno-section-title">Ou pagar com</p>
+        <div id="payment-methods-list" class="yuno-methods-list"></div>
+      </div>
+
+      <!-- Select oculto (necessário para o Lite SDK) -->
+      <select id="payment-methods" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+        <option value=""></option>
+      </select>
+
+      <!-- Container onde o Lite monta o formulário do método selecionado -->
+      <div id="checkout-container" class="checkout-full-container"></div>
+
+      <!-- Botão Continuar (Lite SDK) -->
+      <button id="button-pay" class="hero-button yuno-continue-btn" style="display: none;">Continuar</button>
+
+      <!-- Opções NuPay -->
+      <div id="nupay-options" style="display: none; margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <h4>Opções de Pagamento NuPay</h4>
+        <div id="funding-source-section" style="margin: 15px 0">
+          <label for="funding-source" style="display: block; font-weight: bold; margin-bottom: 5px">Forma de Pagamento:</label>
+          <select id="funding-source" class="payment-select">
+            <option value="" disabled selected>Selecione a forma de pagamento</option>
+          </select>
+        </div>
+        <div id="installments-section" style="display: none; margin: 15px 0">
+          <label for="installments" style="display: block; font-weight: bold; margin-bottom: 5px">Parcelas:</label>
+          <select id="installments" class="payment-select">
+            <option value="" disabled selected>Selecione o número de parcelas</option>
+          </select>
+          <div id="installment-details" style="margin-top: 10px; font-size: 12px; color: #666"></div>
+        </div>
+        <div id="additional-limit-info" style="display: none; margin: 15px 0; padding: 10px; background: #e8f5e8; border-radius: 4px;">
+          <p style="margin: 0; color: #2d5a2d; font-weight: bold">
+            <span id="additional-limit-message"></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Divisor -->
+      <div style="margin: 24px 0; text-align: center; color: #999;">
+        <span style="background: #f0f0f0; padding: 0 15px;">ou</span>
+      </div>
+
+      <!-- Botão Payment Link -->
+      <button id="button-payment-link" class="hero-button" style="background: #0070ba;">
+        Pagar com Link
+      </button>
+      <p id="payment-link-loading" style="display: none; color: #666; margin-top: 10px;">
+        Gerando link de pagamento...
+      </p>
+
+      <!-- ===== Pagamento expresso: Apple Pay, Google Pay, PayPal (sempre botões externos) =====
+         Fluxo fixo deste projeto: PayPal NUNCA na lista; sempre montado como botão externo
+         (mountExternalButtons), igual Google/Apple Pay. Independente da integração do cliente. -->
+      <div id="express-section" class="express-section-inline" style="display: none;">
+        <p class="yuno-section-title">Pagamento expresso</p>
+        <div class="express-buttons-col">
+          <div id="apple-pay" class="express-slot">
+            <span id="apple-pay-fallback" class="express-fallback">Apple Pay (Safari / iOS)</span>
+          </div>
+          <div id="google-pay" class="express-slot"></div>
+          <div id="paypal-button" class="express-slot express-slot-paypal"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      const publicApiKey = "sandbox_gAAAAABmsPEk3FoharvZ2w_FCTu61C9i6T2h8_OktdR6ABPoo0ZKOfvR3hLvR_STblCfA7X769CXTCu24jUbEhuL4J8ZzaRHPkYFCeyENFeJ_o5yo6KXWldzFCBBm5W3WGyWkjnJourLuEsi59CJ_6qlUZIDwhL4SGBmiySCf_eyiUEGSL1326eyrwfzhXpqAH3LWST4i1TTx-T3SQTeb4dUJ3I22CnKNQ2psxa7Xf-v5mVLRfAveQPrvW0UeIEgajARpUIbCemH";
+
+      // Uma única instância do SDK
+      let yuno;
+      let checkoutSession;
+      let countryCode;
+      let selectedPaymentMethod = null;
+
+      // Fluxo fixo: PayPal sempre como botão externo (nunca na lista). Independente da integração do cliente.
+      const EXPRESS_METHODS = new Set(["APPLE_PAY", "GOOGLE_PAY", "PAYPAL", "PAYPAL_WALLET"]);
+
+      // ========================================
+      // BACKEND CALLS
+      // ========================================
+      async function getCheckoutSession() {
+        const res = await fetch("/checkout/sessions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            country: "BR",
+            currency: "BRL",
+            amount: 2000, // 20.00 BRL em centavos
+          }),
+        });
+        return res.json();
+      }
+
+      async function getPaymentMethods(session) {
+        const res = await fetch(`/payment-methods/${session}`);
+        return res.json();
+      }
+
+      async function createPayment(data) {
+        const res = await fetch("/payments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const body = await res.json();
+        if (!res.ok) {
+          const msg = body?.message || body?.error || body?.yuno?.messages?.[0] || res.statusText;
+          console.error("createPayment failed:", res.status, body);
+          throw new Error(msg || "Falha ao criar pagamento");
+        }
+        return body;
+      }
+
+      async function getNuPayPaymentConditions(amount, document) {
+        const res = await fetch("/nupay/payment-conditions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount, document }),
+        });
+        return res.json();
+      }
+
+      // ========================================
+      // PRODUTO
+      // ========================================
+      const products = {
+        1: { name: "Urban Textures T-Shirt", price: 20.00 },
+        2: { name: "Stüssy T-Shirt", price: 10.00 },
+      };
+      let selectedProductId = 1;
+
+      window.selectProduct = function (productId) {
+        selectedProductId = productId;
+        document.querySelectorAll(".product-card").forEach((c) => c.classList.remove("selected"));
+        document.getElementById(`product-${productId}`).classList.add("selected");
+        document.getElementById(`radio-product-${productId}`).checked = true;
+      };
+
+      // ========================================
+      // LISTA DE MÉTODOS (Lite)
+      // ========================================
+      async function loadPaymentMethods(session) {
+        const listEl = document.getElementById("payment-methods-list");
+        const paymentSelect = document.getElementById("payment-methods");
+        let methods = await getPaymentMethods(session);
+        if (!Array.isArray(methods)) {
+          console.warn("getPaymentMethods não retornou array:", methods);
+          methods = [];
+        }
+
+        listEl.innerHTML = "";
+        paymentSelect.innerHTML = '<option value=""></option>';
+
+        const regularMethods = methods.filter((m) => !EXPRESS_METHODS.has(m.type));
+
+        regularMethods.forEach((method) => {
+          const typeForUi = method.type;
+          const label = (method.type === "PAYPAL" || method.type === "PAYPAL_WALLET") ? "PayPal" : (method.description || typeForUi);
+          const opt = document.createElement("option");
+          opt.value = typeForUi;
+          opt.textContent = label;
+          paymentSelect.appendChild(opt);
+
+          const row = document.createElement("div");
+          row.className = "yuno-method-item";
+          row.dataset.type = typeForUi;
+          row.innerHTML = `
+            <span class="yuno-method-radio"></span>
+            <span class="yuno-method-label">${label}</span>
+          `;
+          row.addEventListener("click", () => selectMethod(typeForUi));
+          listEl.appendChild(row);
+        });
+
+        if (regularMethods.length > 0) {
+          document.getElementById("other-methods-section").style.display = "block";
+        }
+        document.getElementById("express-section").style.display = "block";
+      }
+
+      function showExpressSection() {
+        const el = document.getElementById("express-section");
+        if (el) el.style.display = "block";
+      }
+
+      // ========================================
+      // SELEÇÃO DE MÉTODO (Lite)
+      // ========================================
+      async function selectMethod(type) {
+        selectedPaymentMethod = type;
+        document.getElementById("payment-methods").value = type;
+
+        document.querySelectorAll(".yuno-method-item").forEach((el) => {
+          el.classList.toggle("selected", el.dataset.type === type);
+        });
+
+        const payButton = document.getElementById("button-pay");
+        const nuPayOptions = document.getElementById("nupay-options");
+        payButton.style.display = "none";
+        nuPayOptions.style.display = "none";
+
+        try {
+          if (type === "NU_PAY") {
+            nuPayOptions.style.display = "block";
+            await loadNuPayConditions();
+          } else {
+            await yuno.mountCheckoutLite({ paymentMethodType: type, vaultedToken: null });
+            payButton.style.display = "block";
+          }
+        } catch (err) {
+          console.error("Erro ao montar método:", err);
+        }
+      }
+
+      // ========================================
+      // NUPAY
+      // ========================================
+      let selectedFundingSource = null;
+      let selectedInstallments = null;
+      let nuPayConditions = null;
+
+      async function loadNuPayConditions() {
+        try {
+          nuPayConditions = await getNuPayPaymentConditions(20.0, "12345678901");
+          populateFundingSources(nuPayConditions);
+        } catch (err) {
+          console.error("Erro NuPay:", err);
+        }
+      }
+
+      function populateFundingSources(conditions) {
+        const sel = document.getElementById("funding-source");
+        sel.innerHTML = '<option value="" disabled selected>Selecione a forma de pagamento</option>';
+        const labels = { debit: "Débito", credit: "Crédito", credit_with_additional_limit: "Crédito com Limite Adicional" };
+        conditions.forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c.type;
+          opt.textContent = labels[c.type] || c.type;
+          sel.appendChild(opt);
+        });
+        sel.addEventListener("change", handleFundingSource);
+      }
+
+      function handleFundingSource(e) {
+        selectedFundingSource = e.target.value;
+        const condition = nuPayConditions.find((c) => c.type === selectedFundingSource);
+        if (!condition) return;
+        populateInstallments(condition);
+        const msgEl = document.getElementById("additional-limit-message");
+        const infoEl = document.getElementById("additional-limit-info");
+        if (condition.additionalLimitMessage) {
+          msgEl.textContent = condition.additionalLimitMessage;
+          infoEl.style.display = "block";
+        } else {
+          infoEl.style.display = "none";
+        }
+      }
+
+      function populateInstallments(condition) {
+        const section = document.getElementById("installments-section");
+        const sel = document.getElementById("installments");
+        if (!condition.installmentPlans?.length) return;
+        section.style.display = "block";
+        sel.innerHTML = '<option value="" disabled selected>Selecione o número de parcelas</option>';
+        condition.installmentPlans.forEach((plan) => {
+          const opt = document.createElement("option");
+          opt.value = JSON.stringify(plan);
+          opt.textContent = plan.number === 1
+            ? `À vista - R$ ${plan.amount.toFixed(2)}`
+            : `${plan.number}x de R$ ${plan.amount.toFixed(2)}${plan.interest > 0 ? " (com juros)" : ""}`;
+          sel.appendChild(opt);
+        });
+        sel.addEventListener("change", handleInstallment);
+      }
+
+      function handleInstallment(e) {
+        selectedInstallments = JSON.parse(e.target.value);
+        mountNuPay();
+      }
+
+      async function mountNuPay() {
+        if (!selectedFundingSource || !selectedInstallments) return;
+        try {
+          await yuno.mountCheckoutLite({
+            paymentMethodType: "NU_PAY",
+            fundingSource: selectedFundingSource,
+            installments: selectedInstallments.number,
+          });
+          document.getElementById("button-pay").style.display = "block";
+        } catch (err) {
+          console.error("Erro ao montar NuPay:", err);
+        }
+      }
+
+      // ========================================
+      // BOTÃO PAGAR (Lite)
+      // ========================================
+      function setupPayButton() {
+        document.getElementById("button-pay").addEventListener("click", async () => {
+          try {
+            await yuno.startPayment();
+          } catch (err) {
+            console.error("Erro ao iniciar pagamento:", err);
+          }
+        });
+      }
+
+      // ========================================
+      // ========================================
+      // PAYMENT LINK
+      // ========================================
+      function setupPaymentLinkButton() {
+        const btn = document.getElementById("button-payment-link");
+        const loading = document.getElementById("payment-link-loading");
+
+        btn.addEventListener("click", async () => {
+          const product = products[selectedProductId];
+          btn.disabled = true;
+          btn.textContent = "Gerando link...";
+          loading.style.display = "block";
+
+          try {
+            const res = await fetch("/payment-link", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ productName: product.name, amount: product.price, currency: "BRL" }),
+            });
+            const result = await res.json();
+
+            if (result.success && result.paymentLink) {
+              window.location.href = result.paymentLink;
+            } else {
+              alert("Erro ao gerar link de pagamento.");
+              btn.disabled = false;
+              btn.textContent = "Pagar com Link";
+              loading.style.display = "none";
+            }
+          } catch (err) {
+            console.error("Erro:", err);
+            alert("Erro ao gerar link de pagamento.");
+            btn.disabled = false;
+            btn.textContent = "Pagar com Link";
+            loading.style.display = "none";
+          }
+        });
+      }
+
+      // ========================================
+      // INICIALIZAÇÃO — única instância Yuno (Lite + Seamless)
+      // ========================================
+      async function initCheckout() {
+        try {
+          const session = await getCheckoutSession();
+          checkoutSession = session.checkout_session;
+          countryCode = session.country || "BR";
+
+          if (!checkoutSession) {
+            const msg = session?.messages?.[0] || session?.message || session?.error || "Sessão inválida";
+            throw new Error(msg);
+          }
+
+          // Única instância do SDK Lite v1.5 (suporta Lite + Seamless)
+          yuno = await Yuno.initialize(publicApiKey);
+
+          // Diagnóstico: confirma se mountSeamlessExternalButtons existe (execute no console: typeof yuno.mountSeamlessExternalButtons)
+          const hasSeamless = typeof yuno.mountSeamlessExternalButtons === "function";
+          console.log("[Yuno diagnóstico] mountSeamlessExternalButtons:", hasSeamless ? "function" : typeof yuno.mountSeamlessExternalButtons);
+
+          await yuno.startCheckout({
+            checkoutSession,
+            elementSelector: "#checkout-container",
+            countryCode,
+            currency: "BRL",
+            language: "pt",
+            showLoading: true,
+            issuersFormEnable: true,
+            showPaymentStatus: true,
+            onLoading: (args) => console.log("Yuno loading:", args),
+            yunoPaymentMethodSelected: (data) => {
+              const type = data?.type || data?.paymentMethodType;
+              if (type) {
+                selectedPaymentMethod = type;
+                const sel = document.getElementById("payment-methods");
+                if (sel && !sel.querySelector(`option[value="${type}"]`)) {
+                  const opt = document.createElement("option");
+                  opt.value = type;
+                  opt.textContent = (type === "PAYPAL" || type === "PAYPAL_WALLET") ? "PayPal" : type;
+                  sel.appendChild(opt);
+                }
+                if (sel) sel.value = type;
+              }
+            },
+            async yunoCreatePayment(oneTimeToken) {
+              try {
+                const type = document.getElementById("payment-methods").value || selectedPaymentMethod || "CARD";
+                const paymentData = { oneTimeToken, checkoutSession, paymentMethodType: type };
+                console.log("yunoCreatePayment:", { type, hasToken: !!oneTimeToken });
+
+                if (type === "NU_PAY" && selectedFundingSource && selectedInstallments) {
+                  paymentData.nuPayData = {
+                    fundingSource: selectedFundingSource,
+                    installments: selectedInstallments.number,
+                    authorizationType: selectedFundingSource === "debit" ? "2fa" : "pre_authorized",
+                  };
+                }
+
+                const result = await createPayment(paymentData);
+                if (result && !result.error) {
+                  const redirectUrl = result.redirect_url || result.data?.redirect_url || result.payment_method?.redirect_url;
+                  if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                    return;
+                  }
+                  yuno.continuePayment({ showPaymentStatus: true });
+                }
+              } catch (err) {
+                console.error("Erro ao criar pagamento:", err);
+                alert("Não foi possível processar o pagamento: " + (err.message || "tente novamente."));
+              }
+            },
+            yunoPaymentResult: (data) => console.log("Resultado:", data),
+            yunoError: (err) => console.error("Erro Yuno:", err),
+          });
+
+          // Fluxo fixo: Google Pay, Apple Pay e PayPal sempre como botões externos (mountExternalButtons).
+          // PayPal não é compatível com checkout lite; este é o fluxo padrão do projeto, independente do cliente.
+          try {
+            await yuno.mountExternalButtons([
+              { paymentMethodType: "GOOGLE_PAY", elementSelector: "#google-pay" },
+              { paymentMethodType: "APPLE_PAY",  elementSelector: "#apple-pay"  },
+              { paymentMethodType: "PAYPAL",     elementSelector: "#paypal-button" },
+            ]);
+            setTimeout(() => {
+              const slot = document.getElementById("apple-pay");
+              const fallback = document.getElementById("apple-pay-fallback");
+              if (fallback && slot.children.length === 1 && slot.querySelector(".express-fallback")) {
+                fallback.style.display = "block";
+              } else if (fallback) {
+                fallback.style.display = "none";
+              }
+            }, 1200);
+          } catch (err) {
+            console.warn("mountExternalButtons:", err);
+          }
+
+          showExpressSection();
+          await loadPaymentMethods(checkoutSession);
+          setupPayButton();
+          setupPaymentLinkButton();
+
+        } catch (err) {
+          console.error("Erro ao inicializar checkout:", err);
+          const msg = err?.message || err?.messages?.[0] || err?.error || String(err);
+          alert("Erro ao inicializar checkout: " + msg + "\n\nRecarregue a página. Se continuar, confira o console (F12).");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        selectProduct(1);
+        setupPaymentLinkButton();
+      });
+
+      window.addEventListener("yuno-sdk-ready", initCheckout);
+    </script>
+
+    <!-- SDK: https://sdk-web.y.uno/v1.5/main.js (Lite + Seamless) -->
+    <script src="https://sdk-web.y.uno/v1.5/main.js" defer></script>
+  </body>
+</html>

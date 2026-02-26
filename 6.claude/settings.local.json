@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(open \"https://demo.y.uno/\")",
+      "WebFetch(domain:demo.y.uno)",
+      "WebSearch",
+      "WebFetch(domain:docs.y.uno)",
+      "WebFetch(domain:github.com)",
+      "mcp__Desktop_Commander__list_directory",
+      "mcp__Desktop_Commander__read_file",
+      "Bash(wc:*)",
+      "Bash(find:*)"
+    ]
+  }
+}

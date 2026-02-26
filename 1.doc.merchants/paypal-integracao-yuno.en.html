@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayPal integration with Yuno — SDK Lite, SDK Full & Direct API</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --accent: #6366f1;
+      --accent-dark: #4f46e5;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --teal: #0d9488;
+      --amber: #d97706;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --code-bg: #1e1e1e;
+      --code-border: #333;
+      --code-text: #d4d4d4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+      color: var(--accent-dark);
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: var(--blue);
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--purple);
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+      color: var(--text);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card.highlight {
+      border-left-color: var(--accent);
+      background: #eef2ff;
+    }
+
+    .card.highlight strong { color: var(--accent-dark); }
+
+    .card.warning {
+      border-left-color: var(--amber);
+      background: #fffbeb;
+    }
+
+    .card.warning strong { color: #b45309; }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.5rem;
+    }
+
+    .badge.lite { background: #dbeafe; color: #1d4ed8; }
+    .badge.full { background: #ede9fe; color: #6d28d9; }
+    .badge.api { background: #ccfbf1; color: #0f766e; }
+
+    ul, ol { margin: 0 0 0.75rem; padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; color: var(--text); }
+
+    /* Inline code (in paragraphs): no box, Cursor-style colors */
+    code, .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: none;
+      padding: 0;
+      border: none;
+      color: #0969da;
+    }
+    code.c-fn, .code.c-fn { color: #0550ae; font-weight: 600; }
+    code.c-type, .code.c-type { color: #0a3069; }
+    code.c-prop, .code.c-prop { color: #0969da; }
+    code.c-str, .code.c-str { color: #cf222e; }
+    code.c-sel, .code.c-sel { color: #953800; }
+
+    /* Code blocks: black quadrant */
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+      line-height: 1.5;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--code-text);
+      border: none;
+      font-size: 1em;
+    }
+
+    /* Cursor Dark theme colors in quadrants (syntax highlight) */
+    pre code .hl-kw { color: #569cd6; }
+    pre code .hl-str { color: #ce9178; }
+    pre code .hl-com { color: #6a9955; }
+    pre code .hl-num { color: #b5cea8; }
+    pre code .hl-fn  { color: #dcdcaa; }
+    pre code .hl-prop { color: #9cdcfe; }
+    pre code .hl-type { color: #4ec9b0; }
+
+    .step {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .steps { counter-reset: step; }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    table strong { color: var(--text); }
+
+    /* PDF: white background, preserve text colors */
+    body,
+    .card, .card.highlight, .card.warning,
+    .badge, .badge.lite, .badge.full, .badge.api,
+    code, pre, .step::before {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    @media print {
+      body { background: #fff !important; }
+      .card { background: #f8f9fa !important; border-color: #e2e8f0 !important; border-left-color: #2563eb !important; }
+      .card.highlight { background: #eef2ff !important; border-left-color: #6366f1 !important; }
+      .card.warning { background: #fffbeb !important; border-left-color: #d97706 !important; }
+      h1 { color: #4f46e5 !important; }
+      h2 { color: #2563eb !important; }
+      h3 { color: #7c3aed !important; }
+      code { background: transparent !important; border: none !important; }
+      code.c-fn { color: #0550ae !important; }
+      code.c-type { color: #0a3069 !important; }
+      code.c-prop { color: #0969da !important; }
+      code.c-str { color: #cf222e !important; }
+      code.c-sel { color: #953800 !important; }
+      pre { background: #1e1e1e !important; border-color: #333 !important; }
+      pre code { color: #d4d4d4 !important; }
+      pre code .hl-kw { color: #569cd6 !important; }
+      pre code .hl-str { color: #ce9178 !important; }
+      pre code .hl-com { color: #6a9955 !important; }
+      pre code .hl-num { color: #b5cea8 !important; }
+      pre code .hl-fn { color: #dcdcaa !important; }
+      pre code .hl-prop { color: #9cdcfe !important; }
+      pre code .hl-type { color: #4ec9b0 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>PayPal integration with Yuno</h1>
+      <p class="subtitle">SDK Lite, SDK Full & Direct API — technical guide for developers</p>
+    </header>
+
+    <p>
+      Yuno offers several ways to integrate payments. PayPal can be used in all of them, but the <strong>flow and implementation differ</strong> by integration type. This document provides code snippets and the exact integration points for each scenario.
+    </p>
+
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <strong>Quick reference — where to integrate</strong>
+      <ul style="margin-bottom: 0;">
+        <li><strong>SDK Lite:</strong> HTML (container <code class="c-sel">#paypal-button</code>), JS (<code class="c-type">EXPRESS_METHODS</code>, list filter, <code class="c-fn">mountExternalButtons</code>, <code class="c-fn">yunoCreatePayment</code> with redirect), Backend (POST /payments — PayPal branch with <code class="c-prop">workflow</code> + <code class="c-prop">callback_url</code>, normalize <code class="c-prop">redirect_url</code> in the response).</li>
+        <li><strong>SDK Full:</strong> Frontend (<code class="c-fn">mountCheckout</code> + <code class="c-fn">yunoCreatePayment</code> handling <code class="c-prop">redirect_url</code>), Backend (same as Lite).</li>
+        <li><strong>Direct API:</strong> Backend (POST <code class="c-str">/v1/checkout/sessions</code>, POST <code class="c-str">/v1/payments</code> with PayPal body), Frontend (call your route and redirect to <code class="c-prop">redirect_url</code>).</li>
+      </ul>
+    </div>
+
+    <!-- ========== SDK LITE ========== -->
+    <h2><span class="badge lite">SDK Lite</span> PayPal in Checkout Lite</h2>
+
+    <div class="card warning">
+      <strong>Important restriction:</strong> PayPal <strong>is not compatible with checkout lite in the method list</strong>. If you try to show PayPal in the list (“Or pay with”) and use <code class="c-fn">mountCheckoutLite</code> for it, Yuno returns an error like “PAYPAL is not compatible with checkout lite”.
+    </div>
+
+    <h3>Solution: external button (recommended)</h3>
+    <p>Treat PayPal as an <strong>external button</strong>, same as Google Pay and Apple Pay: use <code class="c-fn">mountExternalButtons</code> and <strong>do not</strong> include PayPal in the list that uses <code class="c-fn">mountCheckoutLite</code>.</p>
+
+    <h3>1. Where to integrate in HTML (SDK Lite)</h3>
+    <div class="card">
+      <p><strong>PayPal button container</strong> — inside the express checkout section:</p>
+      <pre><code>&lt;div id="express-section" style="display: none;"&gt;
+  &lt;p&gt;Express checkout&lt;/p&gt;
+  &lt;div id="apple-pay" class="express-slot"&gt;&lt;/div&gt;
+  &lt;div id="google-pay" class="express-slot"&gt;&lt;/div&gt;
+  &lt;div id="paypal-button" class="express-slot"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p><strong>SDK script</strong> — before closing <code class="c-sel">&lt;/body&gt;</code>:</p>
+      <pre><code>&lt;script src="https://sdk-web.y.uno/v1.5/main.js" defer&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <h3>2. Where to integrate in JavaScript — Frontend (SDK Lite)</h3>
+    <div class="card">
+      <p><strong>Constant to exclude PayPal from the list</strong> (so it does not appear in “Or pay with” and is not mounted with <code class="c-fn">mountCheckoutLite</code>):</p>
+      <pre><code>const EXPRESS_METHODS = new Set(["APPLE_PAY", "GOOGLE_PAY", "PAYPAL", "PAYPAL_WALLET"]);</code></pre>
+      <p><strong>Filter methods when building the list</strong> — when populating the payment methods list, ignore those in <code class="c-type">EXPRESS_METHODS</code>:</p>
+      <pre><code>const regularMethods = methods.filter((m) => !EXPRESS_METHODS.has(m.type));
+regularMethods.forEach((method) => {
+  // add option / item to list; NEVER include PAYPAL here
+});</code></pre>
+      <p><strong>Mount the PayPal button</strong> — after <code class="c-fn">yuno.startCheckout({ ... })</code>, call:</p>
+      <pre><code>await yuno.mountExternalButtons([
+  { paymentMethodType: "GOOGLE_PAY", elementSelector: "#google-pay" },
+  { paymentMethodType: "APPLE_PAY",  elementSelector: "#apple-pay"  },
+  { paymentMethodType: "PAYPAL",     elementSelector: "#paypal-button" },
+]);</code></pre>
+      <p><strong>Handle redirect in <code class="c-fn">yunoCreatePayment</code> callback</strong> — when you get the response from your backend, if <code class="c-prop">redirect_url</code> is present, redirect and do not call <code class="c-fn">continuePayment</code>:</p>
+      <pre><code>async yunoCreatePayment(oneTimeToken) {
+  const type = selectedPaymentMethod; // or value from select (PAYPAL when from button)
+  const result = await createPayment({
+    oneTimeToken,
+    checkoutSession,
+    paymentMethodType: type,
+  });
+  if (result && !result.error) {
+    const redirectUrl = result.redirect_url
+      || result.data?.redirect_url
+      || result.payment_method?.redirect_url;
+    if (redirectUrl) {
+      window.location.href = redirectUrl;
+      return;
+    }
+    yuno.continuePayment({ showPaymentStatus: true });
+  }
+}</code></pre>
+      <p><strong>Backend call to create payment</strong> (e.g. on “Pay” click or when the SDK triggers the flow):</p>
+      <pre><code>const result = await fetch("/payments", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    oneTimeToken,
+    checkoutSession,
+    paymentMethodType: "PAYPAL", // or type returned by SDK
+  }),
+}).then((r) => r.json());</code></pre>
+    </div>
+
+    <h3>3. Where to integrate in Backend (SDK Lite)</h3>
+    <div class="card">
+      <p><strong>POST /payments route</strong> — when building the payment body for the Yuno API, detect PayPal and set <code class="c-prop">workflow</code> + <code class="c-prop">callback_url</code>:</p>
+      <pre><code>const paymentMethodType = req.body.paymentMethodType || req.body.payment_method_type;
+const isPayPal = paymentMethodType === "PAYPAL"
+  || paymentMethodType === "PAYPAL_WALLET"
+  || paymentMethodType === "PAY_PAL";
+
+if (isPayPal) {
+  payment.payment_method.type = "PAYPAL";
+  payment.payment_method.detail = { paypal: {} };
+  payment.workflow = "REDIRECT";
+  payment.callback_url = process.env.BASE_URL
+    ? `${process.env.BASE_URL.replace(/\/$/, "")}/payment-success?provider=paypal`
+    : `${req.protocol}://${req.get("host")}/payment-success?provider=paypal`;
+  payment.metadata = [
+    { key: "payment_method", value: "paypal" },
+    { key: "type", value: "wallet" },
+  ];
+}
+
+const response = await createPayment(idempotencyKey, payment);</code></pre>
+      <p><strong>Return <code class="c-prop">redirect_url</code> to the frontend</strong> — the Yuno API may return the URL in different paths; normalize it for the front:</p>
+      <pre><code>if (isPayPal && !response.redirect_url) {
+  const pm = response.payment_method ?? response.data?.payment_method;
+  const detail = pm?.payment_method_detail ?? pm?.detail;
+  const wallet = detail?.wallet ?? detail?.paypal;
+  response.redirect_url =
+    response.data?.redirect_url
+    ?? pm?.redirect_url
+    ?? detail?.redirect_url
+    ?? wallet?.redirect_url
+    ?? detail?.paypal?.redirect_url
+    ?? response.approval_url
+    ?? response.checkout_url;
+}
+res.json(response);</code></pre>
+    </div>
+
+    <p class="note">
+      This flow (PayPal always as an external button in SDK Lite) is the recommended one and should be the same regardless of the client’s specific integration.
+    </p>
+
+    <!-- ========== SDK FULL ========== -->
+    <h2><span class="badge full">SDK Full</span> PayPal in Full Checkout</h2>
+
+    <p>
+      In the <strong>SDK Full</strong>, Yuno manages the checkout screen and the method list. PayPal can appear as an option in that list when enabled in the dashboard and returned in the session’s payment methods.
+    </p>
+
+    <h3>1. Where to integrate in Frontend (SDK Full)</h3>
+    <div class="card">
+      <p><strong>Load and initialize the SDK</strong>:</p>
+      <pre><code>window.addEventListener('yuno-sdk-ready', async () => {
+  const yuno = await Yuno.initialize(PUBLIC_API_KEY);
+  await yuno.mountCheckout({
+    checkoutSession,
+    elementSelector: "#checkout-container",
+    countryCode: "BR",
+    currency: "BRL",
+    language: "pt",
+    yunoCreatePayment: async (oneTimeToken) => {
+      const result = await fetch("/payments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          oneTimeToken,
+          checkoutSession,
+          paymentMethodType: selectedMethod, // user-selected type (can be PAYPAL)
+        }),
+      }).then((r) => r.json());
+      const redirectUrl = result.redirect_url ?? result.data?.redirect_url;
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
+        return;
+      }
+      yuno.continuePayment({ showPaymentStatus: true });
+    },
+  });
+});
+&lt;script defer src="https://sdk-web.y.uno/v1.5/main.js"&gt;&lt;/script&gt;</code></pre>
+      <p><strong>Important:</strong> in the Full SDK, PayPal can be in the list; when the user selects PayPal, the same <code class="c-fn">yunoCreatePayment</code> is called. Your backend must identify <code class="c-prop">paymentMethodType: "PAYPAL"</code> and return <code class="c-prop">redirect_url</code>; the front redirects as in the code above.</p>
+    </div>
+
+    <h3>2. Backend (SDK Full)</h3>
+    <p>Same as SDK Lite: in the route that creates the payment (e.g. POST <code class="c-str">/payments</code>), when <code class="c-prop">paymentMethodType</code> is <code class="c-type">PAYPAL</code> or <code class="c-type">PAYPAL_WALLET</code>, build the body with <code class="c-prop">payment_method.type = "PAYPAL"</code>, <code class="c-prop">payment_method.detail</code>, <code class="c-prop">workflow = "REDIRECT"</code> and <code class="c-prop">callback_url</code>, call the Yuno Create Payment API, and pass <code class="c-prop">redirect_url</code> in the response to the front (see snippets in the “Backend (SDK Lite)” section above).</p>
+
+    <!-- ========== DIRECT API ========== -->
+    <h2><span class="badge api">Direct API</span> PayPal via direct API (headless)</h2>
+
+    <p>
+      In the <strong>Direct API</strong> (headless) integration there is no checkout SDK: you build the UI and call only the Yuno REST API. The PayPal flow is fully controlled by your front and backend.
+    </p>
+
+    <h3>1. Yuno API headers</h3>
+    <div class="card">
+      <p>All Yuno API calls use:</p>
+      <pre><code>headers: {
+  "public-api-key": PUBLIC_API_KEY,   // from Yuno account
+  "private-secret-key": PRIVATE_SECRET_KEY,
+  "Content-Type": "application/json",
+}</code></pre>
+      <p>Create Payment also requires:</p>
+      <pre><code>"X-idempotency-key": idempotencyKey  // unique UUID per attempt</code></pre>
+    </div>
+
+    <h3>2. Where to integrate in Backend — Yuno endpoints</h3>
+    <div class="card">
+      <p><strong>Create Checkout Session</strong> (before creating the payment):</p>
+      <pre><code>POST {API_URL}/v1/checkout/sessions
+Body: {
+  "account_id": "YOUR_ACCOUNT_CODE",
+  "merchant_order_id": "order-paypal-123",
+  "payment_description": "PayPal payment",
+  "country": "BR",
+  "customer_id": "CUSTOMER_UUID",
+  "amount": { "value": 2000, "currency": "BRL" }
+}
+// Response: checkout_session (or id) — use in Create Payment</code></pre>
+      <p><strong>Create Payment (PayPal REDIRECT)</strong>:</p>
+      <pre><code>POST {API_URL}/v1/payments
+Headers: + "X-idempotency-key": uuid.v4()
+
+Body: {
+  "description": "Payment description",
+  "account_id": "YOUR_ACCOUNT_CODE",
+  "merchant_order_id": "1655401222",
+  "country": "BR",
+  "amount": { "currency": "BRL", "value": 2000 },
+  "checkout": { "session": "CHECKOUT_SESSION_ID" },
+  "customer_payer": {
+    "id": "CUSTOMER_ID",
+    "billing_address": { "address_line_1": "...", "city": "...", "country": "BR", "state": "...", "zip_code": "..." },
+    "document": { "document_type": "CPF", "document_number": "..." },
+    "nationality": "BR"
+  },
+  "payment_method": {
+    "type": "PAYPAL",
+    "detail": { "paypal": {} }
+  },
+  "workflow": "REDIRECT",
+  "callback_url": "https://yoursite.com/payment-success?provider=paypal"
+}</code></pre>
+      <p>The response will include <code class="c-prop">redirect_url</code> (or in <code class="c-prop">data.redirect_url</code> / <code class="c-prop">payment_method.redirect_url</code>). Your backend should return this URL to the frontend.</p>
+    </div>
+
+    <h3>3. Your backend route (Direct API)</h3>
+    <div class="card">
+      <p>Example route the front calls to “start PayPal payment”; the backend creates a session (if needed), creates the payment with Yuno, and returns <code class="c-prop">redirect_url</code>:</p>
+      <pre><code>app.post("/payments/paypal/redirect", async (req, res) => {
+  const callbackUrl = `${BASE_URL}/payment-success?provider=paypal`;
+  const sessionRes = await createCheckoutSession({
+    account_id: ACCOUNT_CODE,
+    merchant_order_id: `order-paypal-${Date.now()}`,
+    country: "BR",
+    customer_id: CUSTOMER_ID,
+    amount: { value: req.body.amount ?? 2000, currency: "BRL" },
+  });
+  const checkoutSession = sessionRes.checkout_session ?? sessionRes.id;
+  const payment = {
+    account_id: ACCOUNT_CODE,
+    merchant_order_id: sessionRes.merchant_order_id,
+    country: "BR",
+    amount: { currency: "BRL", value: req.body.amount ?? 2000 },
+    checkout: { session: checkoutSession },
+    customer_payer: { id: CUSTOMER_ID, /* ... address, document, nationality ... */ },
+    payment_method: { type: "PAYPAL", detail: { paypal: {} } },
+    workflow: "REDIRECT",
+    callback_url: callbackUrl,
+  };
+  const response = await createPayment(uuid.v4(), payment);
+  const redirectUrl = response.redirect_url ?? response.data?.redirect_url ?? response.payment_method?.redirect_url;
+  res.json({ redirect_url: redirectUrl });
+});</code></pre>
+    </div>
+
+    <h3>4. Where to integrate in Frontend (Direct API)</h3>
+    <div class="card">
+      <p>“Pay with PayPal” button calls your API and redirects:</p>
+      <pre><code>document.getElementById("btn-paypal").addEventListener("click", async () => {
+  const res = await fetch("/payments/paypal/redirect", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount: 2000, currency: "BRL" }),
+  });
+  const data = await res.json();
+  const url = data.redirect_url;
+  if (url) {
+    window.location.href = url;
+  } else {
+    console.error("No redirect_url", data);
+  }
+});</code></pre>
+    </div>
+
+    <div class="card highlight">
+      <strong>Direct API — PayPal summary</strong>: (1) Backend creates Checkout Session and Payment with Yuno using <code class="c-prop">payment_method.type = "PAYPAL"</code>, <code class="c-prop">workflow = "REDIRECT"</code>, <code class="c-prop">callback_url</code>; (2) Backend returns <code class="c-prop">redirect_url</code> to the front; (3) Front redirects with <code class="c-fn">window.location.href = redirect_url</code>; (4) User pays on PayPal and returns via <code class="c-prop">callback_url</code>; (5) Final result via Yuno webhook.
+    </div>
+
+    <!-- ========== SUMMARY ========== -->
+    <h2>Summary by integration type</h2>
+    <div class="card">
+      <table style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr style="text-align: left; border-bottom: 1px solid var(--border);">
+            <th style="padding: 0.5rem 0.75rem 0.5rem 0;">Integration</th>
+            <th style="padding: 0.5rem 0.75rem;">PayPal in list?</th>
+            <th style="padding: 0.5rem 0.75rem;">Front action</th>
+            <th style="padding: 0.5rem 0.75rem;">Backend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 0.75rem 0.75rem 0.75rem 0;"><strong>SDK Lite</strong></td>
+            <td style="padding: 0.75rem;">No (not compatible)</td>
+            <td style="padding: 0.75rem;">Use <code class="c-fn">mountExternalButtons</code> with <code class="c-type">PAYPAL</code> in a dedicated container; redirect if the response has <code class="c-prop">redirect_url</code>.</td>
+            <td style="padding: 0.75rem;">Create Payment with type PAYPAL, workflow REDIRECT, callback_url; return redirect_url to front.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 0.75rem 0.75rem 0.75rem 0;"><strong>SDK Full</strong></td>
+            <td style="padding: 0.75rem;">Yes (when enabled)</td>
+            <td style="padding: 0.75rem;">Checkout mounted by SDK; handle redirect when backend returns <code class="c-prop">redirect_url</code>.</td>
+            <td style="padding: 0.75rem;">Create Payment with type PAYPAL, workflow REDIRECT, callback_url; return redirect_url to front.</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem 0.75rem 0.75rem 0;"><strong>Direct API</strong></td>
+            <td style="padding: 0.75rem;">N/A (your UI)</td>
+            <td style="padding: 0.75rem;">“PayPal” button/link that calls your backend and redirects to the returned <code class="c-prop">redirect_url</code>.</td>
+            <td style="padding: 0.75rem;">Create Payment with type PAYPAL, workflow REDIRECT, callback_url; return redirect_url in the response to the front.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      In all cases, the backend must use <strong>workflow REDIRECT</strong> and <strong>callback_url</strong> for PayPal, and the frontend must redirect the user to <code class="c-prop">redirect_url</code> when the API returns that field.
+    </p>
+
+    <footer>
+      Document for partners/merchants. Yuno integration — PayPal (SDK Lite, SDK Full, Direct API).
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      var blocks = document.querySelectorAll('pre code');
+      var kw = /\b(const|let|var|async|await|if|else|return|new|try|catch|throw|for|in|of|while|function|=>|POST|GET|Body|Headers)\b/g;
+      blocks.forEach(function(block) {
+        var raw = block.textContent;
+        var s = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        var stash = [];
+        s = s.replace(/\/\/[^\n]*/g, function(m){ stash.push('<span class="hl-com">'+m+'</span>'); return '\u0001'+(stash.length-1)+'\u0001'; });
+        s = s.replace(/\/\*[\s\S]*?\*\//g, function(m){ stash.push('<span class="hl-com">'+m+'</span>'); return '\u0001'+(stash.length-1)+'\u0001'; });
+        s = s.replace(/"([^"\\]|\\.)*"/g, function(m){ stash.push('<span class="hl-str">'+m+'</span>'); return '\u0001'+(stash.length-1)+'\u0001'; });
+        s = s.replace(/'([^'\\]|\\.)*'/g, function(m){ stash.push('<span class="hl-str">'+m+'</span>'); return '\u0001'+(stash.length-1)+'\u0001'; });
+        s = s.replace(/`([^`\\]|\\.)*`/g, function(m){ stash.push('<span class="hl-str">'+m+'</span>'); return '\u0001'+(stash.length-1)+'\u0001'; });
+        s = s.replace(/\b(PAYPAL|PAYPAL_WALLET|PAY_PAL|APPLE_PAY|GOOGLE_PAY|EXPRESS_METHODS|REDIRECT|CARD|BRL|USD|BR|CPF)\b/g, '<span class="hl-type">$1</span>');
+        s = s.replace(/\b(redirect_url|callback_url|workflow|payment_method|checkout_session|paymentMethodType|oneTimeToken|elementSelector)\b/g, '<span class="hl-prop">$1</span>');
+        s = s.replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g, '<span class="hl-fn">$1</span> ');
+        s = s.replace(kw, '<span class="hl-kw">$1</span>');
+        s = s.replace(/\b(\d+\.?\d*)\b/g, '<span class="hl-num">$1</span>');
+        for (var i = 0; i < stash.length; i++) s = s.replace('\u0001'+i+'\u0001', stash[i]);
+        block.innerHTML = s;
+      });
+    })();
+  </script>
+</body>
+</html>

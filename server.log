@@ -1,0 +1,2937 @@
+[dotenv@17.2.0] injecting env (4) from .env (tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild)
+[OK] index.html
+[OK] 2.images.png (static)
+[OK] 4.sdk lite 1.5/sdk-lite.html
+indexPage (GET /) = /Users/sarahsantiago/Desktop/SDK lite 1.5/index.html
+Server is running at: http://localhost:8082
+Também acessível em: http://127.0.0.1:8082
+
+============================================================
+[14:40:51] 📥 REQUEST
+============================================================
+➡️  GET /
+📍 IP: 127.0.0.1
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  GET /
+📍 IP: 127.0.0.1
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  GET /static/stylesheet.css
+📍 IP: 127.0.0.1
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  GET /static/pigeon.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  GET /static/camisa.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  GET /static/stussy.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  POST /checkout/sessions
+📍 IP: 127.0.0.1
+📦 Body: {
+  "country": "BR",
+  "currency": "BRL",
+  "amount": 2000
+}
+
+============================================================
+[14:41:13] 📥 REQUEST
+============================================================
+➡️  GET /favicon.ico
+📍 IP: 127.0.0.1
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:41:14] 🌐 YUNO API - CREATE CHECKOUT SESSION
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 POST https://api-sandbox.y.uno/v1/checkout/sessions
+📤 REQUEST: {
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "merchant_order_id": "order-1772127673806",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "country": "BR",
+  "amount": {
+    "value": 2000,
+    "currency": "BRL"
+  },
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6"
+}
+📥 STATUS: 200 OK
+📥 RESPONSE: {
+  "merchant_order_id": "order-1772127673806",
+  "checkout_session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+  "country": "BR",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+  "callback_url": null,
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "created_at": "2026-02-26T17:41:14.513398Z",
+  "metadata": null,
+  "workflow": "SDK_CHECKOUT",
+  "installments": {
+    "plan_id": null,
+    "plan": null
+  },
+  "used": false
+}
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:41:14] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: {
+  "checkout_session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+  "country": "BR",
+  "currency": "BRL",
+  "merchant_order_id": "order-1772127673806",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+  "callback_url": null,
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "created_at": "2026-02-26T17:41:14.513398Z",
+  "metadata": null,
+  "workflow": "SDK_CHECKOUT",
+  "installments": {
+    "plan_id": null,
+    "plan": null
+  },
+  "used": false
+}
+============================================================
+
+
+============================================================
+[14:41:19] 📥 REQUEST
+============================================================
+➡️  GET /payment-methods/208b1965-8e6e-4d44-9d38-292e579ffd5f
+📍 IP: 127.0.0.1
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:41:19] 🌐 YUNO API - GET PAYMENT METHODS
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 GET https://api-sandbox.y.uno/v1/checkout/sessions/208b1965-8e6e-4d44-9d38-292e579ffd5f/payment-methods
+📥 STATUS: 200 OK
+📥 RESPONSE: [
+  {
+    "name": "Card",
+    "vaulted_token": null,
+    "description": "Card",
+    "type": "CARD",
+    "category": "CARD",
+    "icon": "https://sdk.prod.y.uno/brands/card_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": true
+  },
+  {
+    "name": "Pix",
+    "vaulted_token": null,
+    "description": "Pix",
+    "type": "PIX",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-07T19:57:18.951503427Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Boleto",
+    "vaulted_token": null,
+    "description": "Boleto",
+    "type": "BOLETO",
+    "category": "TICKET",
+    "icon": "https://icons.prod.y.uno/boleto_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-07-22T22:58:26.597154260Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Apple Pay",
+    "vaulted_token": null,
+    "description": "Apple Pay",
+    "type": "APPLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/applepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2026-01-08T14:31:56.508039539Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Google Pay",
+    "vaulted_token": null,
+    "description": "Google Pay",
+    "type": "GOOGLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/googlepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:16:47.267085665Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Pix parcelado",
+    "vaulted_token": null,
+    "description": "Pix parcelado",
+    "type": "PIX_PARCELADO",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Nubank - Pagamento no app",
+    "vaulted_token": null,
+    "description": "Nubank - Pagamento no app",
+    "type": "NU_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/nubank_logosimbolo_final.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:04:39.467901016Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Click to Pay",
+    "vaulted_token": null,
+    "description": "Click to Pay",
+    "type": "CLICK_TO_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/clicktopay_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "PayPal",
+    "vaulted_token": null,
+    "description": "PayPal",
+    "type": "PAYPAL",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/paypal_logosimbolo.png",
+    "last_successfully_used": true,
+    "last_successfully_used_at": "2026-02-26T16:34:50.182122838Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  }
+]
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:41:19] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: [
+  {
+    "name": "Card",
+    "vaulted_token": null,
+    "description": "Card",
+    "type": "CARD",
+    "category": "CARD",
+    "icon": "https://sdk.prod.y.uno/brands/card_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": true
+  },
+  {
+    "name": "Pix",
+    "vaulted_token": null,
+    "description": "Pix",
+    "type": "PIX",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-07T19:57:18.951503427Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Boleto",
+    "vaulted_token": null,
+    "description": "Boleto",
+    "type": "BOLETO",
+    "category": "TICKET",
+    "icon": "https://icons.prod.y.uno/boleto_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-07-22T22:58:26.597154260Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Apple Pay",
+    "vaulted_token": null,
+    "description": "Apple Pay",
+    "type": "APPLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/applepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2026-01-08T14:31:56.508039539Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Google Pay",
+    "vaulted_token": null,
+    "description": "Google Pay",
+    "type": "GOOGLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/googlepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:16:47.267085665Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Pix parcelado",
+    "vaulted_token": null,
+    "description": "Pix parcelado",
+    "type": "PIX_PARCELADO",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Nubank - Pagamento no app",
+    "vaulted_token": null,
+    "description": "Nubank - Pagamento no app",
+    "type": "NU_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/nubank_logosimbolo_final.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:04:39.467901016Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Click to Pay",
+    "vaulted_token": null,
+    "description": "Click to Pay",
+    "type": "CLICK_TO_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/clicktopay_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "PayPal",
+    "vaulted_token": null,
+    "description": "PayPal",
+    "type": "PAYPAL",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/paypal_logosimbolo.png",
+    "last_successfully_used": true,
+    "last_successfully_used_at": "2026-02-26T16:34:50.182122838Z",
+    "checkout": {
+      "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  }
+]
+============================================================
+
+
+============================================================
+[14:41:57] 📥 REQUEST
+============================================================
+➡️  POST /payments
+📍 IP: 127.0.0.1
+📦 Body: {
+  "oneTimeToken": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+  "checkoutSession": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+  "paymentMethodType": "PAYPAL"
+}
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:41:59] 🌐 YUNO API - CREATE PAYMENT
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 POST https://api-sandbox.y.uno/v1/payments
+📤 REQUEST: {
+  "idempotencyKey": "34afc4f0-12c2-4e26-a589-03cb8d2c97b1",
+  "description": "Pigeonz Street Wear - Payment",
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "merchant_order_id": "1655401222",
+  "country": "BR",
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "checkout": {
+    "session": "208b1965-8e6e-4d44-9d38-292e579ffd5f"
+  },
+  "customer_payer": {
+    "billing_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "city": "New York",
+      "country": "BR",
+      "state": "NY",
+      "zip_code": "10001"
+    },
+    "shipping_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "city": "New York",
+      "country": "BR",
+      "state": "NY",
+      "zip_code": "10001"
+    },
+    "document": {
+      "document_type": "CPF",
+      "document_number": "35104075397"
+    },
+    "id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+    "nationality": "BR"
+  },
+  "payment_method": {
+    "type": "PAYPAL",
+    "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+    "vaulted_token": null,
+    "detail": {
+      "paypal": {}
+    }
+  },
+  "workflow": "REDIRECT",
+  "callback_url": "http://localhost:8082/payment-success?provider=paypal",
+  "metadata": [
+    {
+      "key": "payment_method",
+      "value": "paypal"
+    },
+    {
+      "key": "type",
+      "value": "wallet"
+    }
+  ]
+}
+📥 STATUS: 201 Created
+📥 RESPONSE: {
+  "id": "42eed3cd-d5e2-477e-8aac-dd49d1889473",
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "description": "Pigeonz Street Wear - Payment",
+  "country": "BR",
+  "status": "READY_TO_PAY",
+  "sub_status": "CREATED",
+  "merchant_order_id": "1655401222",
+  "created_at": "2026-02-26T17:41:58.557227Z",
+  "updated_at": "2026-02-26T17:41:59.398105Z",
+  "amount": {
+    "captured": 0,
+    "currency": "BRL",
+    "currency_conversion": null,
+    "refunded": 0,
+    "value": 2000
+  },
+  "checkout": {
+    "session": "415c1efd-44ed-4cb2-835f-4cbc8fed73e5",
+    "sdk_action_required": true
+  },
+  "payment_method": {
+    "vaulted_token": "",
+    "type": "PAYPAL",
+    "vault_on_success": false,
+    "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+    "parent_payment_method_type": null,
+    "otp": {},
+    "payment_method_detail": {
+      "wallet": {
+        "verify": false,
+        "capture": false,
+        "installments": 0,
+        "installments_plan_id": null,
+        "first_installment_deferral": 0,
+        "installments_type": "",
+        "installment_amount": null,
+        "installments_total_amount": null,
+        "payment_method_id": null,
+        "payment_method_detail": null,
+        "date_of_expiration": null,
+        "money_release_date": null,
+        "sponsor_id": null,
+        "authorization_code": null,
+        "customer_data": null,
+        "card_data": {
+          "holder_name": "",
+          "iin": "",
+          "lfd": "",
+          "number_length": 0,
+          "security_code_length": 0,
+          "brand": "",
+          "issuer_name": "",
+          "issuer_code": null,
+          "country_code": null,
+          "category": null,
+          "type": "",
+          "fingerprint": null,
+          "expiration_month": null,
+          "expiration_year": null
+        },
+        "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc",
+        "expires_at": null
+      }
+    }
+  },
+  "customer_payer": {
+    "id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+    "merchant_customer_id": "0123",
+    "first_name": "Jorge",
+    "last_name": "Ben Jor",
+    "gender": "",
+    "date_of_birth": null,
+    "email": "benjor@gmail.com",
+    "nationality": "BR",
+    "ip_address": "177.182.46.31",
+    "device_fingerprint": null,
+    "device_fingerprints": [
+      {
+        "provider_id": "PAYPAL",
+        "id": "208b1965-8e6e-4d44-9d38-292e579ffd5f"
+      }
+    ],
+    "browser_info": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "accept_header": "*/*",
+      "accept_content": "*/*",
+      "accept_browser": "*/*",
+      "color_depth": "30",
+      "screen_height": "982",
+      "screen_width": "1512",
+      "javascript_enabled": true,
+      "java_enabled": false,
+      "browser_time_difference": "180",
+      "language": "pt",
+      "platform": "WEB"
+    },
+    "document": {
+      "document_type": "CPF",
+      "document_number": "35104075397"
+    },
+    "phone": null,
+    "billing_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "shipping_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "merchant_customer_created_at": null
+  },
+  "additional_data": null,
+  "transactions": {
+    "id": "25b175da-6acf-4f7b-90f1-6c2f6c9021e0",
+    "type": "PURCHASE",
+    "status": "CREATED",
+    "category": "WALLET",
+    "amount": 2000,
+    "provider_id": "PAYPAL",
+    "payment_method": {
+      "vaulted_token": "",
+      "type": "PAYPAL",
+      "vault_on_success": false,
+      "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+      "parent_payment_method_type": null,
+      "otp": {},
+      "detail": {
+        "wallet": {
+          "verify": false,
+          "capture": false,
+          "installments": 0,
+          "installments_plan_id": null,
+          "first_installment_deferral": 0,
+          "installments_type": "",
+          "installment_amount": null,
+          "installments_total_amount": null,
+          "payment_method_id": null,
+          "payment_method_detail": null,
+          "date_of_expiration": null,
+          "money_release_date": null,
+          "sponsor_id": null,
+          "authorization_code": null,
+          "customer_data": null,
+          "card_data": {
+            "holder_name": "",
+            "iin": "",
+            "lfd": "",
+            "number_length": 0,
+            "security_code_length": 0,
+            "brand": "",
+            "issuer_name": "",
+            "issuer_code": null,
+            "country_code": null,
+            "category": null,
+            "type": "",
+            "fingerprint": null,
+            "expiration_month": null,
+            "expiration_year": null
+          },
+          "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc",
+          "expires_at": null
+        }
+      }
+    },
+    "response_code": "SUCCEEDED",
+    "response_message": "Transaction successful",
+    "reason": null,
+    "description": "Pigeonz Street Wear - Payment",
+    "merchant_reference": "1655401222",
+    "provider_data": {
+      "id": "PAYPAL",
+      "transaction_id": "8PY264295G613013H",
+      "account_id": "",
+      "status": "CREATED",
+      "sub_status": "",
+      "status_detail": "",
+      "response_message": null,
+      "response_code": null,
+      "raw_response": {
+        "value": "{\"id\":\"8PY264295G613013H\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=8PY264295G613013H\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+      },
+      "third_party_transaction_id": "",
+      "third_party_account_id": "",
+      "iso8583_response_code": null,
+      "iso8583_response_message": null,
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null,
+      "reason_code": null,
+      "reason_description": null
+    },
+    "connection_data": {
+      "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+      "name": "teste"
+    },
+    "device_fingerprint": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+    "created_at": "2026-02-26T17:41:58.683471Z",
+    "updated_at": "2026-02-26T17:41:59.338084Z",
+    "split_marketplace": [],
+    "merchant_advice_code": null,
+    "merchant_advice_code_message": null
+  },
+  "transactions_history": [
+    {
+      "id": "25b175da-6acf-4f7b-90f1-6c2f6c9021e0",
+      "type": "PURCHASE",
+      "status": "CREATED",
+      "category": "WALLET",
+      "amount": 2000,
+      "provider_id": "PAYPAL",
+      "payment_method": {
+        "vaulted_token": "",
+        "type": "PAYPAL",
+        "vault_on_success": false,
+        "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+        "parent_payment_method_type": null,
+        "otp": {},
+        "detail": {
+          "wallet": {
+            "verify": false,
+            "capture": false,
+            "installments": 0,
+            "installments_plan_id": null,
+            "first_installment_deferral": 0,
+            "installments_type": "",
+            "installment_amount": null,
+            "installments_total_amount": null,
+            "payment_method_id": null,
+            "payment_method_detail": null,
+            "date_of_expiration": null,
+            "money_release_date": null,
+            "sponsor_id": null,
+            "authorization_code": null,
+            "customer_data": null,
+            "card_data": {
+              "holder_name": "",
+              "iin": "",
+              "lfd": "",
+              "number_length": 0,
+              "security_code_length": 0,
+              "brand": "",
+              "issuer_name": "",
+              "issuer_code": null,
+              "country_code": null,
+              "category": null,
+              "type": "",
+              "fingerprint": null,
+              "expiration_month": null,
+              "expiration_year": null
+            },
+            "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc",
+            "expires_at": null
+          }
+        }
+      },
+      "response_code": "SUCCEEDED",
+      "response_message": "Transaction successful",
+      "reason": null,
+      "description": "Pigeonz Street Wear - Payment",
+      "merchant_reference": "1655401222",
+      "provider_data": {
+        "id": "PAYPAL",
+        "transaction_id": "8PY264295G613013H",
+        "account_id": "",
+        "status": "CREATED",
+        "sub_status": "",
+        "status_detail": "",
+        "response_message": null,
+        "response_code": null,
+        "raw_response": {
+          "value": "{\"id\":\"8PY264295G613013H\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=8PY264295G613013H\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+        },
+        "third_party_transaction_id": "",
+        "third_party_account_id": "",
+        "iso8583_response_code": null,
+        "iso8583_response_message": null,
+        "merchant_advice_code": null,
+        "merchant_advice_code_message": null,
+        "reason_code": null,
+        "reason_description": null
+      },
+      "connection_data": {
+        "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+        "name": "teste"
+      },
+      "device_fingerprint": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "created_at": "2026-02-26T17:41:58.683471Z",
+      "updated_at": "2026-02-26T17:41:59.338084Z",
+      "split_marketplace": [],
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null
+    }
+  ],
+  "callback_url": "http://localhost:8082/payment-success?provider=paypal",
+  "workflow": "REDIRECT",
+  "metadata": [
+    {
+      "key": "payment_method",
+      "value": "paypal"
+    },
+    {
+      "key": "type",
+      "value": "wallet"
+    }
+  ],
+  "fraud_screening": null,
+  "payment_link_id": "",
+  "subscription_code": null,
+  "routing_rules": {
+    "smart_routing": false,
+    "monitors": false,
+    "condition": {
+      "id": 291622,
+      "name": null,
+      "description": null
+    }
+  },
+  "simplified_mode": false
+}
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:41:59] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: {
+  "id": "42eed3cd-d5e2-477e-8aac-dd49d1889473",
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "description": "Pigeonz Street Wear - Payment",
+  "country": "BR",
+  "status": "READY_TO_PAY",
+  "sub_status": "CREATED",
+  "merchant_order_id": "1655401222",
+  "created_at": "2026-02-26T17:41:58.557227Z",
+  "updated_at": "2026-02-26T17:41:59.398105Z",
+  "amount": {
+    "captured": 0,
+    "currency": "BRL",
+    "currency_conversion": null,
+    "refunded": 0,
+    "value": 2000
+  },
+  "checkout": {
+    "session": "415c1efd-44ed-4cb2-835f-4cbc8fed73e5",
+    "sdk_action_required": true
+  },
+  "payment_method": {
+    "vaulted_token": "",
+    "type": "PAYPAL",
+    "vault_on_success": false,
+    "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+    "parent_payment_method_type": null,
+    "otp": {},
+    "payment_method_detail": {
+      "wallet": {
+        "verify": false,
+        "capture": false,
+        "installments": 0,
+        "installments_plan_id": null,
+        "first_installment_deferral": 0,
+        "installments_type": "",
+        "installment_amount": null,
+        "installments_total_amount": null,
+        "payment_method_id": null,
+        "payment_method_detail": null,
+        "date_of_expiration": null,
+        "money_release_date": null,
+        "sponsor_id": null,
+        "authorization_code": null,
+        "customer_data": null,
+        "card_data": {
+          "holder_name": "",
+          "iin": "",
+          "lfd": "",
+          "number_length": 0,
+          "security_code_length": 0,
+          "brand": "",
+          "issuer_name": "",
+          "issuer_code": null,
+          "country_code": null,
+          "category": null,
+          "type": "",
+          "fingerprint": null,
+          "expiration_month": null,
+          "expiration_year": null
+        },
+        "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc",
+        "expires_at": null
+      }
+    }
+  },
+  "customer_payer": {
+    "id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+    "merchant_customer_id": "0123",
+    "first_name": "Jorge",
+    "last_name": "Ben Jor",
+    "gender": "",
+    "date_of_birth": null,
+    "email": "benjor@gmail.com",
+    "nationality": "BR",
+    "ip_address": "177.182.46.31",
+    "device_fingerprint": null,
+    "device_fingerprints": [
+      {
+        "provider_id": "PAYPAL",
+        "id": "208b1965-8e6e-4d44-9d38-292e579ffd5f"
+      }
+    ],
+    "browser_info": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "accept_header": "*/*",
+      "accept_content": "*/*",
+      "accept_browser": "*/*",
+      "color_depth": "30",
+      "screen_height": "982",
+      "screen_width": "1512",
+      "javascript_enabled": true,
+      "java_enabled": false,
+      "browser_time_difference": "180",
+      "language": "pt",
+      "platform": "WEB"
+    },
+    "document": {
+      "document_type": "CPF",
+      "document_number": "35104075397"
+    },
+    "phone": null,
+    "billing_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "shipping_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "merchant_customer_created_at": null
+  },
+  "additional_data": null,
+  "transactions": {
+    "id": "25b175da-6acf-4f7b-90f1-6c2f6c9021e0",
+    "type": "PURCHASE",
+    "status": "CREATED",
+    "category": "WALLET",
+    "amount": 2000,
+    "provider_id": "PAYPAL",
+    "payment_method": {
+      "vaulted_token": "",
+      "type": "PAYPAL",
+      "vault_on_success": false,
+      "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+      "parent_payment_method_type": null,
+      "otp": {},
+      "detail": {
+        "wallet": {
+          "verify": false,
+          "capture": false,
+          "installments": 0,
+          "installments_plan_id": null,
+          "first_installment_deferral": 0,
+          "installments_type": "",
+          "installment_amount": null,
+          "installments_total_amount": null,
+          "payment_method_id": null,
+          "payment_method_detail": null,
+          "date_of_expiration": null,
+          "money_release_date": null,
+          "sponsor_id": null,
+          "authorization_code": null,
+          "customer_data": null,
+          "card_data": {
+            "holder_name": "",
+            "iin": "",
+            "lfd": "",
+            "number_length": 0,
+            "security_code_length": 0,
+            "brand": "",
+            "issuer_name": "",
+            "issuer_code": null,
+            "country_code": null,
+            "category": null,
+            "type": "",
+            "fingerprint": null,
+            "expiration_month": null,
+            "expiration_year": null
+          },
+          "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc",
+          "expires_at": null
+        }
+      }
+    },
+    "response_code": "SUCCEEDED",
+    "response_message": "Transaction successful",
+    "reason": null,
+    "description": "Pigeonz Street Wear - Payment",
+    "merchant_reference": "1655401222",
+    "provider_data": {
+      "id": "PAYPAL",
+      "transaction_id": "8PY264295G613013H",
+      "account_id": "",
+      "status": "CREATED",
+      "sub_status": "",
+      "status_detail": "",
+      "response_message": null,
+      "response_code": null,
+      "raw_response": {
+        "value": "{\"id\":\"8PY264295G613013H\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=8PY264295G613013H\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+      },
+      "third_party_transaction_id": "",
+      "third_party_account_id": "",
+      "iso8583_response_code": null,
+      "iso8583_response_message": null,
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null,
+      "reason_code": null,
+      "reason_description": null
+    },
+    "connection_data": {
+      "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+      "name": "teste"
+    },
+    "device_fingerprint": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+    "created_at": "2026-02-26T17:41:58.683471Z",
+    "updated_at": "2026-02-26T17:41:59.338084Z",
+    "split_marketplace": [],
+    "merchant_advice_code": null,
+    "merchant_advice_code_message": null
+  },
+  "transactions_history": [
+    {
+      "id": "25b175da-6acf-4f7b-90f1-6c2f6c9021e0",
+      "type": "PURCHASE",
+      "status": "CREATED",
+      "category": "WALLET",
+      "amount": 2000,
+      "provider_id": "PAYPAL",
+      "payment_method": {
+        "vaulted_token": "",
+        "type": "PAYPAL",
+        "vault_on_success": false,
+        "token": "66e4aeae-f658-4dd8-8488-8f41bc764ba0",
+        "parent_payment_method_type": null,
+        "otp": {},
+        "detail": {
+          "wallet": {
+            "verify": false,
+            "capture": false,
+            "installments": 0,
+            "installments_plan_id": null,
+            "first_installment_deferral": 0,
+            "installments_type": "",
+            "installment_amount": null,
+            "installments_total_amount": null,
+            "payment_method_id": null,
+            "payment_method_detail": null,
+            "date_of_expiration": null,
+            "money_release_date": null,
+            "sponsor_id": null,
+            "authorization_code": null,
+            "customer_data": null,
+            "card_data": {
+              "holder_name": "",
+              "iin": "",
+              "lfd": "",
+              "number_length": 0,
+              "security_code_length": 0,
+              "brand": "",
+              "issuer_name": "",
+              "issuer_code": null,
+              "country_code": null,
+              "category": null,
+              "type": "",
+              "fingerprint": null,
+              "expiration_month": null,
+              "expiration_year": null
+            },
+            "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc",
+            "expires_at": null
+          }
+        }
+      },
+      "response_code": "SUCCEEDED",
+      "response_message": "Transaction successful",
+      "reason": null,
+      "description": "Pigeonz Street Wear - Payment",
+      "merchant_reference": "1655401222",
+      "provider_data": {
+        "id": "PAYPAL",
+        "transaction_id": "8PY264295G613013H",
+        "account_id": "",
+        "status": "CREATED",
+        "sub_status": "",
+        "status_detail": "",
+        "response_message": null,
+        "response_code": null,
+        "raw_response": {
+          "value": "{\"id\":\"8PY264295G613013H\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=8PY264295G613013H\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/8PY264295G613013H/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+        },
+        "third_party_transaction_id": "",
+        "third_party_account_id": "",
+        "iso8583_response_code": null,
+        "iso8583_response_message": null,
+        "merchant_advice_code": null,
+        "merchant_advice_code_message": null,
+        "reason_code": null,
+        "reason_description": null
+      },
+      "connection_data": {
+        "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+        "name": "teste"
+      },
+      "device_fingerprint": "208b1965-8e6e-4d44-9d38-292e579ffd5f",
+      "created_at": "2026-02-26T17:41:58.683471Z",
+      "updated_at": "2026-02-26T17:41:59.338084Z",
+      "split_marketplace": [],
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null
+    }
+  ],
+  "callback_url": "http://localhost:8082/payment-success?provider=paypal",
+  "workflow": "REDIRECT",
+  "metadata": [
+    {
+      "key": "payment_method",
+      "value": "paypal"
+    },
+    {
+      "key": "type",
+      "value": "wallet"
+    }
+  ],
+  "fraud_screening": null,
+  "payment_link_id": "",
+  "subscription_code": null,
+  "routing_rules": {
+    "smart_routing": false,
+    "monitors": false,
+    "condition": {
+      "id": 291622,
+      "name": null,
+      "description": null
+    }
+  },
+  "simplified_mode": false,
+  "redirect_url": "https://checkout.sandbox.y.uno/payment?session=4d43124a-a08e-459e-b95c-bd05788fb2bc"
+}
+============================================================
+
+
+============================================================
+[14:42:34] 📥 REQUEST
+============================================================
+➡️  GET /payment-success?provider=paypal
+📍 IP: 127.0.0.1
+🔎 Query Params: [Object: null prototype] { provider: 'paypal' }
+
+============================================================
+[14:43:05] 📥 REQUEST
+============================================================
+➡️  GET /
+📍 IP: 127.0.0.1
+
+============================================================
+[14:43:05] 📥 REQUEST
+============================================================
+➡️  GET /static/stylesheet.css
+📍 IP: 127.0.0.1
+
+============================================================
+[14:43:05] 📥 REQUEST
+============================================================
+➡️  GET /static/pigeon.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:43:05] 📥 REQUEST
+============================================================
+➡️  GET /static/stussy.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:43:05] 📥 REQUEST
+============================================================
+➡️  GET /static/camisa.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:43:05] 📥 REQUEST
+============================================================
+➡️  POST /checkout/sessions
+📍 IP: 127.0.0.1
+📦 Body: {
+  "country": "BR",
+  "currency": "BRL",
+  "amount": 2000
+}
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:43:06] 🌐 YUNO API - CREATE CHECKOUT SESSION
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 POST https://api-sandbox.y.uno/v1/checkout/sessions
+📤 REQUEST: {
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "merchant_order_id": "order-1772127785352",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "country": "BR",
+  "amount": {
+    "value": 2000,
+    "currency": "BRL"
+  },
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6"
+}
+📥 STATUS: 200 OK
+📥 RESPONSE: {
+  "merchant_order_id": "order-1772127785352",
+  "checkout_session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+  "country": "BR",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+  "callback_url": null,
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "created_at": "2026-02-26T17:43:05.934206Z",
+  "metadata": null,
+  "workflow": "SDK_CHECKOUT",
+  "installments": {
+    "plan_id": null,
+    "plan": null
+  },
+  "used": false
+}
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:43:06] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: {
+  "checkout_session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+  "country": "BR",
+  "currency": "BRL",
+  "merchant_order_id": "order-1772127785352",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+  "callback_url": null,
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "created_at": "2026-02-26T17:43:05.934206Z",
+  "metadata": null,
+  "workflow": "SDK_CHECKOUT",
+  "installments": {
+    "plan_id": null,
+    "plan": null
+  },
+  "used": false
+}
+============================================================
+
+
+============================================================
+[14:43:08] 📥 REQUEST
+============================================================
+➡️  GET /payment-methods/6da3c995-03f8-4cec-9856-d20b5f441b6f
+📍 IP: 127.0.0.1
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:43:09] 🌐 YUNO API - GET PAYMENT METHODS
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 GET https://api-sandbox.y.uno/v1/checkout/sessions/6da3c995-03f8-4cec-9856-d20b5f441b6f/payment-methods
+📥 STATUS: 200 OK
+📥 RESPONSE: [
+  {
+    "name": "Card",
+    "vaulted_token": null,
+    "description": "Card",
+    "type": "CARD",
+    "category": "CARD",
+    "icon": "https://sdk.prod.y.uno/brands/card_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": true
+  },
+  {
+    "name": "Pix",
+    "vaulted_token": null,
+    "description": "Pix",
+    "type": "PIX",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-07T19:57:18.951503427Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Boleto",
+    "vaulted_token": null,
+    "description": "Boleto",
+    "type": "BOLETO",
+    "category": "TICKET",
+    "icon": "https://icons.prod.y.uno/boleto_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-07-22T22:58:26.597154260Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Apple Pay",
+    "vaulted_token": null,
+    "description": "Apple Pay",
+    "type": "APPLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/applepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2026-01-08T14:31:56.508039539Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Google Pay",
+    "vaulted_token": null,
+    "description": "Google Pay",
+    "type": "GOOGLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/googlepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:16:47.267085665Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Pix parcelado",
+    "vaulted_token": null,
+    "description": "Pix parcelado",
+    "type": "PIX_PARCELADO",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Nubank - Pagamento no app",
+    "vaulted_token": null,
+    "description": "Nubank - Pagamento no app",
+    "type": "NU_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/nubank_logosimbolo_final.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:04:39.467901016Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Click to Pay",
+    "vaulted_token": null,
+    "description": "Click to Pay",
+    "type": "CLICK_TO_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/clicktopay_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "PayPal",
+    "vaulted_token": null,
+    "description": "PayPal",
+    "type": "PAYPAL",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/paypal_logosimbolo.png",
+    "last_successfully_used": true,
+    "last_successfully_used_at": "2026-02-26T17:41:59.375764593Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  }
+]
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:43:09] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: [
+  {
+    "name": "Card",
+    "vaulted_token": null,
+    "description": "Card",
+    "type": "CARD",
+    "category": "CARD",
+    "icon": "https://sdk.prod.y.uno/brands/card_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": true
+  },
+  {
+    "name": "Pix",
+    "vaulted_token": null,
+    "description": "Pix",
+    "type": "PIX",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-07T19:57:18.951503427Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Boleto",
+    "vaulted_token": null,
+    "description": "Boleto",
+    "type": "BOLETO",
+    "category": "TICKET",
+    "icon": "https://icons.prod.y.uno/boleto_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-07-22T22:58:26.597154260Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Apple Pay",
+    "vaulted_token": null,
+    "description": "Apple Pay",
+    "type": "APPLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/applepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2026-01-08T14:31:56.508039539Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Google Pay",
+    "vaulted_token": null,
+    "description": "Google Pay",
+    "type": "GOOGLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/googlepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:16:47.267085665Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Pix parcelado",
+    "vaulted_token": null,
+    "description": "Pix parcelado",
+    "type": "PIX_PARCELADO",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Nubank - Pagamento no app",
+    "vaulted_token": null,
+    "description": "Nubank - Pagamento no app",
+    "type": "NU_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/nubank_logosimbolo_final.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:04:39.467901016Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Click to Pay",
+    "vaulted_token": null,
+    "description": "Click to Pay",
+    "type": "CLICK_TO_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/clicktopay_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "PayPal",
+    "vaulted_token": null,
+    "description": "PayPal",
+    "type": "PAYPAL",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/paypal_logosimbolo.png",
+    "last_successfully_used": true,
+    "last_successfully_used_at": "2026-02-26T17:41:59.375764593Z",
+    "checkout": {
+      "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  }
+]
+============================================================
+
+
+============================================================
+[14:43:21] 📥 REQUEST
+============================================================
+➡️  POST /payments
+📍 IP: 127.0.0.1
+📦 Body: {
+  "oneTimeToken": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+  "checkoutSession": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+  "paymentMethodType": "PAYPAL"
+}
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:43:23] 🌐 YUNO API - CREATE PAYMENT
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 POST https://api-sandbox.y.uno/v1/payments
+📤 REQUEST: {
+  "idempotencyKey": "07b67364-59c2-469f-a0c1-a518fdd9e02f",
+  "description": "Pigeonz Street Wear - Payment",
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "merchant_order_id": "1655401222",
+  "country": "BR",
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "checkout": {
+    "session": "6da3c995-03f8-4cec-9856-d20b5f441b6f"
+  },
+  "customer_payer": {
+    "billing_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "city": "New York",
+      "country": "BR",
+      "state": "NY",
+      "zip_code": "10001"
+    },
+    "shipping_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "city": "New York",
+      "country": "BR",
+      "state": "NY",
+      "zip_code": "10001"
+    },
+    "document": {
+      "document_type": "CPF",
+      "document_number": "35104075397"
+    },
+    "id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+    "nationality": "BR"
+  },
+  "payment_method": {
+    "type": "PAYPAL",
+    "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+    "vaulted_token": null,
+    "detail": {
+      "paypal": {}
+    }
+  },
+  "workflow": "REDIRECT",
+  "callback_url": "http://localhost:8082/payment-success?provider=paypal",
+  "metadata": [
+    {
+      "key": "payment_method",
+      "value": "paypal"
+    },
+    {
+      "key": "type",
+      "value": "wallet"
+    }
+  ]
+}
+📥 STATUS: 201 Created
+📥 RESPONSE: {
+  "id": "7f8808c5-f700-47e9-a48b-69b94a9318e9",
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "description": "Pigeonz Street Wear - Payment",
+  "country": "BR",
+  "status": "READY_TO_PAY",
+  "sub_status": "CREATED",
+  "merchant_order_id": "1655401222",
+  "created_at": "2026-02-26T17:43:22.633416Z",
+  "updated_at": "2026-02-26T17:43:23.469458Z",
+  "amount": {
+    "captured": 0,
+    "currency": "BRL",
+    "currency_conversion": null,
+    "refunded": 0,
+    "value": 2000
+  },
+  "checkout": {
+    "session": "30f2e80d-a072-43e9-ab94-3eeb89bc0d2e",
+    "sdk_action_required": true
+  },
+  "payment_method": {
+    "vaulted_token": "",
+    "type": "PAYPAL",
+    "vault_on_success": false,
+    "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+    "parent_payment_method_type": null,
+    "otp": {},
+    "payment_method_detail": {
+      "wallet": {
+        "verify": false,
+        "capture": false,
+        "installments": 0,
+        "installments_plan_id": null,
+        "first_installment_deferral": 0,
+        "installments_type": "",
+        "installment_amount": null,
+        "installments_total_amount": null,
+        "payment_method_id": null,
+        "payment_method_detail": null,
+        "date_of_expiration": null,
+        "money_release_date": null,
+        "sponsor_id": null,
+        "authorization_code": null,
+        "customer_data": null,
+        "card_data": {
+          "holder_name": "",
+          "iin": "",
+          "lfd": "",
+          "number_length": 0,
+          "security_code_length": 0,
+          "brand": "",
+          "issuer_name": "",
+          "issuer_code": null,
+          "country_code": null,
+          "category": null,
+          "type": "",
+          "fingerprint": null,
+          "expiration_month": null,
+          "expiration_year": null
+        },
+        "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4",
+        "expires_at": null
+      }
+    }
+  },
+  "customer_payer": {
+    "id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+    "merchant_customer_id": "0123",
+    "first_name": "Jorge",
+    "last_name": "Ben Jor",
+    "gender": "",
+    "date_of_birth": null,
+    "email": "benjor@gmail.com",
+    "nationality": "BR",
+    "ip_address": "177.182.46.31",
+    "device_fingerprint": null,
+    "device_fingerprints": [
+      {
+        "provider_id": "PAYPAL",
+        "id": "6da3c995-03f8-4cec-9856-d20b5f441b6f"
+      }
+    ],
+    "browser_info": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "accept_header": "*/*",
+      "accept_content": "*/*",
+      "accept_browser": "*/*",
+      "color_depth": "30",
+      "screen_height": "982",
+      "screen_width": "1512",
+      "javascript_enabled": true,
+      "java_enabled": false,
+      "browser_time_difference": "180",
+      "language": "pt",
+      "platform": "WEB"
+    },
+    "document": {
+      "document_type": "CPF",
+      "document_number": "35104075397"
+    },
+    "phone": null,
+    "billing_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "shipping_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "merchant_customer_created_at": null
+  },
+  "additional_data": null,
+  "transactions": {
+    "id": "b74ed6a5-df4a-40d7-9caa-47deab08fb3f",
+    "type": "PURCHASE",
+    "status": "CREATED",
+    "category": "WALLET",
+    "amount": 2000,
+    "provider_id": "PAYPAL",
+    "payment_method": {
+      "vaulted_token": "",
+      "type": "PAYPAL",
+      "vault_on_success": false,
+      "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+      "parent_payment_method_type": null,
+      "otp": {},
+      "detail": {
+        "wallet": {
+          "verify": false,
+          "capture": false,
+          "installments": 0,
+          "installments_plan_id": null,
+          "first_installment_deferral": 0,
+          "installments_type": "",
+          "installment_amount": null,
+          "installments_total_amount": null,
+          "payment_method_id": null,
+          "payment_method_detail": null,
+          "date_of_expiration": null,
+          "money_release_date": null,
+          "sponsor_id": null,
+          "authorization_code": null,
+          "customer_data": null,
+          "card_data": {
+            "holder_name": "",
+            "iin": "",
+            "lfd": "",
+            "number_length": 0,
+            "security_code_length": 0,
+            "brand": "",
+            "issuer_name": "",
+            "issuer_code": null,
+            "country_code": null,
+            "category": null,
+            "type": "",
+            "fingerprint": null,
+            "expiration_month": null,
+            "expiration_year": null
+          },
+          "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4",
+          "expires_at": null
+        }
+      }
+    },
+    "response_code": "SUCCEEDED",
+    "response_message": "Transaction successful",
+    "reason": null,
+    "description": "Pigeonz Street Wear - Payment",
+    "merchant_reference": "1655401222",
+    "provider_data": {
+      "id": "PAYPAL",
+      "transaction_id": "56H354318J730501K",
+      "account_id": "",
+      "status": "CREATED",
+      "sub_status": "",
+      "status_detail": "",
+      "response_message": null,
+      "response_code": null,
+      "raw_response": {
+        "value": "{\"id\":\"56H354318J730501K\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=56H354318J730501K\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+      },
+      "third_party_transaction_id": "",
+      "third_party_account_id": "",
+      "iso8583_response_code": null,
+      "iso8583_response_message": null,
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null,
+      "reason_code": null,
+      "reason_description": null
+    },
+    "connection_data": {
+      "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+      "name": "teste"
+    },
+    "device_fingerprint": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+    "created_at": "2026-02-26T17:43:22.813069Z",
+    "updated_at": "2026-02-26T17:43:23.418268Z",
+    "split_marketplace": [],
+    "merchant_advice_code": null,
+    "merchant_advice_code_message": null
+  },
+  "transactions_history": [
+    {
+      "id": "b74ed6a5-df4a-40d7-9caa-47deab08fb3f",
+      "type": "PURCHASE",
+      "status": "CREATED",
+      "category": "WALLET",
+      "amount": 2000,
+      "provider_id": "PAYPAL",
+      "payment_method": {
+        "vaulted_token": "",
+        "type": "PAYPAL",
+        "vault_on_success": false,
+        "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+        "parent_payment_method_type": null,
+        "otp": {},
+        "detail": {
+          "wallet": {
+            "verify": false,
+            "capture": false,
+            "installments": 0,
+            "installments_plan_id": null,
+            "first_installment_deferral": 0,
+            "installments_type": "",
+            "installment_amount": null,
+            "installments_total_amount": null,
+            "payment_method_id": null,
+            "payment_method_detail": null,
+            "date_of_expiration": null,
+            "money_release_date": null,
+            "sponsor_id": null,
+            "authorization_code": null,
+            "customer_data": null,
+            "card_data": {
+              "holder_name": "",
+              "iin": "",
+              "lfd": "",
+              "number_length": 0,
+              "security_code_length": 0,
+              "brand": "",
+              "issuer_name": "",
+              "issuer_code": null,
+              "country_code": null,
+              "category": null,
+              "type": "",
+              "fingerprint": null,
+              "expiration_month": null,
+              "expiration_year": null
+            },
+            "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4",
+            "expires_at": null
+          }
+        }
+      },
+      "response_code": "SUCCEEDED",
+      "response_message": "Transaction successful",
+      "reason": null,
+      "description": "Pigeonz Street Wear - Payment",
+      "merchant_reference": "1655401222",
+      "provider_data": {
+        "id": "PAYPAL",
+        "transaction_id": "56H354318J730501K",
+        "account_id": "",
+        "status": "CREATED",
+        "sub_status": "",
+        "status_detail": "",
+        "response_message": null,
+        "response_code": null,
+        "raw_response": {
+          "value": "{\"id\":\"56H354318J730501K\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=56H354318J730501K\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+        },
+        "third_party_transaction_id": "",
+        "third_party_account_id": "",
+        "iso8583_response_code": null,
+        "iso8583_response_message": null,
+        "merchant_advice_code": null,
+        "merchant_advice_code_message": null,
+        "reason_code": null,
+        "reason_description": null
+      },
+      "connection_data": {
+        "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+        "name": "teste"
+      },
+      "device_fingerprint": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "created_at": "2026-02-26T17:43:22.813069Z",
+      "updated_at": "2026-02-26T17:43:23.418268Z",
+      "split_marketplace": [],
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null
+    }
+  ],
+  "callback_url": "http://localhost:8082/payment-success?provider=paypal",
+  "workflow": "REDIRECT",
+  "metadata": [
+    {
+      "key": "payment_method",
+      "value": "paypal"
+    },
+    {
+      "key": "type",
+      "value": "wallet"
+    }
+  ],
+  "fraud_screening": null,
+  "payment_link_id": "",
+  "subscription_code": null,
+  "routing_rules": {
+    "smart_routing": false,
+    "monitors": false,
+    "condition": {
+      "id": 291622,
+      "name": null,
+      "description": null
+    }
+  },
+  "simplified_mode": false
+}
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:43:23] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: {
+  "id": "7f8808c5-f700-47e9-a48b-69b94a9318e9",
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "description": "Pigeonz Street Wear - Payment",
+  "country": "BR",
+  "status": "READY_TO_PAY",
+  "sub_status": "CREATED",
+  "merchant_order_id": "1655401222",
+  "created_at": "2026-02-26T17:43:22.633416Z",
+  "updated_at": "2026-02-26T17:43:23.469458Z",
+  "amount": {
+    "captured": 0,
+    "currency": "BRL",
+    "currency_conversion": null,
+    "refunded": 0,
+    "value": 2000
+  },
+  "checkout": {
+    "session": "30f2e80d-a072-43e9-ab94-3eeb89bc0d2e",
+    "sdk_action_required": true
+  },
+  "payment_method": {
+    "vaulted_token": "",
+    "type": "PAYPAL",
+    "vault_on_success": false,
+    "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+    "parent_payment_method_type": null,
+    "otp": {},
+    "payment_method_detail": {
+      "wallet": {
+        "verify": false,
+        "capture": false,
+        "installments": 0,
+        "installments_plan_id": null,
+        "first_installment_deferral": 0,
+        "installments_type": "",
+        "installment_amount": null,
+        "installments_total_amount": null,
+        "payment_method_id": null,
+        "payment_method_detail": null,
+        "date_of_expiration": null,
+        "money_release_date": null,
+        "sponsor_id": null,
+        "authorization_code": null,
+        "customer_data": null,
+        "card_data": {
+          "holder_name": "",
+          "iin": "",
+          "lfd": "",
+          "number_length": 0,
+          "security_code_length": 0,
+          "brand": "",
+          "issuer_name": "",
+          "issuer_code": null,
+          "country_code": null,
+          "category": null,
+          "type": "",
+          "fingerprint": null,
+          "expiration_month": null,
+          "expiration_year": null
+        },
+        "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4",
+        "expires_at": null
+      }
+    }
+  },
+  "customer_payer": {
+    "id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+    "merchant_customer_id": "0123",
+    "first_name": "Jorge",
+    "last_name": "Ben Jor",
+    "gender": "",
+    "date_of_birth": null,
+    "email": "benjor@gmail.com",
+    "nationality": "BR",
+    "ip_address": "177.182.46.31",
+    "device_fingerprint": null,
+    "device_fingerprints": [
+      {
+        "provider_id": "PAYPAL",
+        "id": "6da3c995-03f8-4cec-9856-d20b5f441b6f"
+      }
+    ],
+    "browser_info": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "accept_header": "*/*",
+      "accept_content": "*/*",
+      "accept_browser": "*/*",
+      "color_depth": "30",
+      "screen_height": "982",
+      "screen_width": "1512",
+      "javascript_enabled": true,
+      "java_enabled": false,
+      "browser_time_difference": "180",
+      "language": "pt",
+      "platform": "WEB"
+    },
+    "document": {
+      "document_type": "CPF",
+      "document_number": "35104075397"
+    },
+    "phone": null,
+    "billing_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "shipping_address": {
+      "address_line_1": "123 Example St",
+      "address_line_2": "Apt 502",
+      "country": "BR",
+      "state": "NY",
+      "city": "New York",
+      "zip_code": "10001",
+      "neighborhood": null
+    },
+    "merchant_customer_created_at": null
+  },
+  "additional_data": null,
+  "transactions": {
+    "id": "b74ed6a5-df4a-40d7-9caa-47deab08fb3f",
+    "type": "PURCHASE",
+    "status": "CREATED",
+    "category": "WALLET",
+    "amount": 2000,
+    "provider_id": "PAYPAL",
+    "payment_method": {
+      "vaulted_token": "",
+      "type": "PAYPAL",
+      "vault_on_success": false,
+      "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+      "parent_payment_method_type": null,
+      "otp": {},
+      "detail": {
+        "wallet": {
+          "verify": false,
+          "capture": false,
+          "installments": 0,
+          "installments_plan_id": null,
+          "first_installment_deferral": 0,
+          "installments_type": "",
+          "installment_amount": null,
+          "installments_total_amount": null,
+          "payment_method_id": null,
+          "payment_method_detail": null,
+          "date_of_expiration": null,
+          "money_release_date": null,
+          "sponsor_id": null,
+          "authorization_code": null,
+          "customer_data": null,
+          "card_data": {
+            "holder_name": "",
+            "iin": "",
+            "lfd": "",
+            "number_length": 0,
+            "security_code_length": 0,
+            "brand": "",
+            "issuer_name": "",
+            "issuer_code": null,
+            "country_code": null,
+            "category": null,
+            "type": "",
+            "fingerprint": null,
+            "expiration_month": null,
+            "expiration_year": null
+          },
+          "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4",
+          "expires_at": null
+        }
+      }
+    },
+    "response_code": "SUCCEEDED",
+    "response_message": "Transaction successful",
+    "reason": null,
+    "description": "Pigeonz Street Wear - Payment",
+    "merchant_reference": "1655401222",
+    "provider_data": {
+      "id": "PAYPAL",
+      "transaction_id": "56H354318J730501K",
+      "account_id": "",
+      "status": "CREATED",
+      "sub_status": "",
+      "status_detail": "",
+      "response_message": null,
+      "response_code": null,
+      "raw_response": {
+        "value": "{\"id\":\"56H354318J730501K\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=56H354318J730501K\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+      },
+      "third_party_transaction_id": "",
+      "third_party_account_id": "",
+      "iso8583_response_code": null,
+      "iso8583_response_message": null,
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null,
+      "reason_code": null,
+      "reason_description": null
+    },
+    "connection_data": {
+      "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+      "name": "teste"
+    },
+    "device_fingerprint": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+    "created_at": "2026-02-26T17:43:22.813069Z",
+    "updated_at": "2026-02-26T17:43:23.418268Z",
+    "split_marketplace": [],
+    "merchant_advice_code": null,
+    "merchant_advice_code_message": null
+  },
+  "transactions_history": [
+    {
+      "id": "b74ed6a5-df4a-40d7-9caa-47deab08fb3f",
+      "type": "PURCHASE",
+      "status": "CREATED",
+      "category": "WALLET",
+      "amount": 2000,
+      "provider_id": "PAYPAL",
+      "payment_method": {
+        "vaulted_token": "",
+        "type": "PAYPAL",
+        "vault_on_success": false,
+        "token": "6a2de011-928f-46a9-b0ca-6329a7d79ae1",
+        "parent_payment_method_type": null,
+        "otp": {},
+        "detail": {
+          "wallet": {
+            "verify": false,
+            "capture": false,
+            "installments": 0,
+            "installments_plan_id": null,
+            "first_installment_deferral": 0,
+            "installments_type": "",
+            "installment_amount": null,
+            "installments_total_amount": null,
+            "payment_method_id": null,
+            "payment_method_detail": null,
+            "date_of_expiration": null,
+            "money_release_date": null,
+            "sponsor_id": null,
+            "authorization_code": null,
+            "customer_data": null,
+            "card_data": {
+              "holder_name": "",
+              "iin": "",
+              "lfd": "",
+              "number_length": 0,
+              "security_code_length": 0,
+              "brand": "",
+              "issuer_name": "",
+              "issuer_code": null,
+              "country_code": null,
+              "category": null,
+              "type": "",
+              "fingerprint": null,
+              "expiration_month": null,
+              "expiration_year": null
+            },
+            "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4",
+            "expires_at": null
+          }
+        }
+      },
+      "response_code": "SUCCEEDED",
+      "response_message": "Transaction successful",
+      "reason": null,
+      "description": "Pigeonz Street Wear - Payment",
+      "merchant_reference": "1655401222",
+      "provider_data": {
+        "id": "PAYPAL",
+        "transaction_id": "56H354318J730501K",
+        "account_id": "",
+        "status": "CREATED",
+        "sub_status": "",
+        "status_detail": "",
+        "response_message": null,
+        "response_code": null,
+        "raw_response": {
+          "value": "{\"id\":\"56H354318J730501K\",\"status\":\"CREATED\",\"links\":[{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://www.sandbox.paypal.com/checkoutnow?token=56H354318J730501K\",\"rel\":\"approve\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K\",\"rel\":\"update\",\"method\":\"PATCH\"},{\"href\":\"https://api.sandbox.paypal.com/v2/checkout/orders/56H354318J730501K/capture\",\"rel\":\"capture\",\"method\":\"POST\"}]}"
+        },
+        "third_party_transaction_id": "",
+        "third_party_account_id": "",
+        "iso8583_response_code": null,
+        "iso8583_response_message": null,
+        "merchant_advice_code": null,
+        "merchant_advice_code_message": null,
+        "reason_code": null,
+        "reason_description": null
+      },
+      "connection_data": {
+        "id": "56840e47-0bfd-4e5e-98a7-38fec47d1a00",
+        "name": "teste"
+      },
+      "device_fingerprint": "6da3c995-03f8-4cec-9856-d20b5f441b6f",
+      "created_at": "2026-02-26T17:43:22.813069Z",
+      "updated_at": "2026-02-26T17:43:23.418268Z",
+      "split_marketplace": [],
+      "merchant_advice_code": null,
+      "merchant_advice_code_message": null
+    }
+  ],
+  "callback_url": "http://localhost:8082/payment-success?provider=paypal",
+  "workflow": "REDIRECT",
+  "metadata": [
+    {
+      "key": "payment_method",
+      "value": "paypal"
+    },
+    {
+      "key": "type",
+      "value": "wallet"
+    }
+  ],
+  "fraud_screening": null,
+  "payment_link_id": "",
+  "subscription_code": null,
+  "routing_rules": {
+    "smart_routing": false,
+    "monitors": false,
+    "condition": {
+      "id": 291622,
+      "name": null,
+      "description": null
+    }
+  },
+  "simplified_mode": false,
+  "redirect_url": "https://checkout.sandbox.y.uno/payment?session=b123d7cd-0eb2-4993-84db-03ba9742d0e4"
+}
+============================================================
+
+
+============================================================
+[14:44:18] 📥 REQUEST
+============================================================
+➡️  GET /
+📍 IP: 127.0.0.1
+
+============================================================
+[14:44:18] 📥 REQUEST
+============================================================
+➡️  GET /static/pigeon.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:44:18] 📥 REQUEST
+============================================================
+➡️  GET /static/stussy.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:44:18] 📥 REQUEST
+============================================================
+➡️  GET /static/camisa.png
+📍 IP: 127.0.0.1
+
+============================================================
+[14:44:18] 📥 REQUEST
+============================================================
+➡️  GET /static/stylesheet.css
+📍 IP: 127.0.0.1
+
+============================================================
+[14:44:18] 📥 REQUEST
+============================================================
+➡️  POST /checkout/sessions
+📍 IP: 127.0.0.1
+📦 Body: {
+  "country": "BR",
+  "currency": "BRL",
+  "amount": 2000
+}
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:44:19] 🌐 YUNO API - CREATE CHECKOUT SESSION
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 POST https://api-sandbox.y.uno/v1/checkout/sessions
+📤 REQUEST: {
+  "account_id": "b48d0a7f-3874-498a-98ca-4ee429612893",
+  "merchant_order_id": "order-1772127858390",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "country": "BR",
+  "amount": {
+    "value": 2000,
+    "currency": "BRL"
+  },
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6"
+}
+📥 STATUS: 200 OK
+📥 RESPONSE: {
+  "merchant_order_id": "order-1772127858390",
+  "checkout_session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+  "country": "BR",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+  "callback_url": null,
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "created_at": "2026-02-26T17:44:18.984463Z",
+  "metadata": null,
+  "workflow": "SDK_CHECKOUT",
+  "installments": {
+    "plan_id": null,
+    "plan": null
+  },
+  "used": false
+}
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:44:19] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: {
+  "checkout_session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+  "country": "BR",
+  "currency": "BRL",
+  "merchant_order_id": "order-1772127858390",
+  "payment_description": "Pigeonz Street Wear - Checkout",
+  "customer_id": "7ab03456-833c-4c8d-8a83-833b777363c6",
+  "callback_url": null,
+  "amount": {
+    "currency": "BRL",
+    "value": 2000
+  },
+  "created_at": "2026-02-26T17:44:18.984463Z",
+  "metadata": null,
+  "workflow": "SDK_CHECKOUT",
+  "installments": {
+    "plan_id": null,
+    "plan": null
+  },
+  "used": false
+}
+============================================================
+
+
+============================================================
+[14:44:21] 📥 REQUEST
+============================================================
+➡️  GET /payment-methods/e90e9a48-d26e-47e8-b778-8ac969283c36
+📍 IP: 127.0.0.1
+
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+[14:44:21] 🌐 YUNO API - GET PAYMENT METHODS
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+📍 GET https://api-sandbox.y.uno/v1/checkout/sessions/e90e9a48-d26e-47e8-b778-8ac969283c36/payment-methods
+📥 STATUS: 200 OK
+📥 RESPONSE: [
+  {
+    "name": "Card",
+    "vaulted_token": null,
+    "description": "Card",
+    "type": "CARD",
+    "category": "CARD",
+    "icon": "https://sdk.prod.y.uno/brands/card_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": true
+  },
+  {
+    "name": "Pix",
+    "vaulted_token": null,
+    "description": "Pix",
+    "type": "PIX",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-07T19:57:18.951503427Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Boleto",
+    "vaulted_token": null,
+    "description": "Boleto",
+    "type": "BOLETO",
+    "category": "TICKET",
+    "icon": "https://icons.prod.y.uno/boleto_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-07-22T22:58:26.597154260Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Apple Pay",
+    "vaulted_token": null,
+    "description": "Apple Pay",
+    "type": "APPLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/applepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2026-01-08T14:31:56.508039539Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Google Pay",
+    "vaulted_token": null,
+    "description": "Google Pay",
+    "type": "GOOGLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/googlepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:16:47.267085665Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Pix parcelado",
+    "vaulted_token": null,
+    "description": "Pix parcelado",
+    "type": "PIX_PARCELADO",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Nubank - Pagamento no app",
+    "vaulted_token": null,
+    "description": "Nubank - Pagamento no app",
+    "type": "NU_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/nubank_logosimbolo_final.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:04:39.467901016Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Click to Pay",
+    "vaulted_token": null,
+    "description": "Click to Pay",
+    "type": "CLICK_TO_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/clicktopay_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "PayPal",
+    "vaulted_token": null,
+    "description": "PayPal",
+    "type": "PAYPAL",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/paypal_logosimbolo.png",
+    "last_successfully_used": true,
+    "last_successfully_used_at": "2026-02-26T17:43:23.450075294Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  }
+]
+🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+------------------------------------------------------------
+[14:44:21] 📤 RESPONSE
+------------------------------------------------------------
+⬅️  Status: 200
+📦 Data: [
+  {
+    "name": "Card",
+    "vaulted_token": null,
+    "description": "Card",
+    "type": "CARD",
+    "category": "CARD",
+    "icon": "https://sdk.prod.y.uno/brands/card_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": true
+  },
+  {
+    "name": "Pix",
+    "vaulted_token": null,
+    "description": "Pix",
+    "type": "PIX",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-07T19:57:18.951503427Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Boleto",
+    "vaulted_token": null,
+    "description": "Boleto",
+    "type": "BOLETO",
+    "category": "TICKET",
+    "icon": "https://icons.prod.y.uno/boleto_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-07-22T22:58:26.597154260Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Apple Pay",
+    "vaulted_token": null,
+    "description": "Apple Pay",
+    "type": "APPLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/applepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2026-01-08T14:31:56.508039539Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Google Pay",
+    "vaulted_token": null,
+    "description": "Google Pay",
+    "type": "GOOGLE_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/googlepay_logosimbolo.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:16:47.267085665Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Pix parcelado",
+    "vaulted_token": null,
+    "description": "Pix parcelado",
+    "type": "PIX_PARCELADO",
+    "category": "BANK_TRANSFER",
+    "icon": "https://icons.prod.y.uno/pix_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": true,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Nubank - Pagamento no app",
+    "vaulted_token": null,
+    "description": "Nubank - Pagamento no app",
+    "type": "NU_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/nubank_logosimbolo_final.png",
+    "last_successfully_used": false,
+    "last_successfully_used_at": "2025-10-27T15:04:39.467901016Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "Click to Pay",
+    "vaulted_token": null,
+    "description": "Click to Pay",
+    "type": "CLICK_TO_PAY",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/clicktopay_logosimbolo.png",
+    "last_successfully_used": null,
+    "last_successfully_used_at": null,
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  },
+  {
+    "name": "PayPal",
+    "vaulted_token": null,
+    "description": "PayPal",
+    "type": "PAYPAL",
+    "category": "WALLET",
+    "icon": "https://icons.prod.y.uno/paypal_logosimbolo.png",
+    "last_successfully_used": true,
+    "last_successfully_used_at": "2026-02-26T17:43:23.450075294Z",
+    "checkout": {
+      "session": "e90e9a48-d26e-47e8-b778-8ac969283c36",
+      "sdk_required_action": false,
+      "conditions": {
+        "enabled": true,
+        "rules": null
+      }
+    },
+    "preferred": false
+  }
+]
+============================================================
+

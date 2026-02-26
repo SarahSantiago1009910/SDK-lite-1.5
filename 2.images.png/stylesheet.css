@@ -1,0 +1,492 @@
+:root {
+  /* Tons de branco e off-white */
+  --branco-puro: #ffffff; /* Branco puro para fundos e espaços limpos */
+  --branco-urbano: #f8f9fa; /* Branco levemente acinzentado */
+  --off-white: #f0f0f0; /* Branco mais quente e suave */
+
+  /* Tons de cinza para contraste e detalhes */
+  --cinza-claro: #e0e0e0; /* Cinza claro para bordas e divisórias */
+  --cinza-medio: #b0b0b0; /* Cinza médio para textos secundários */
+  --cinza-escuro: #333333; /* Cinza escuro para textos principais */
+
+  /* Cores de destaque (metálicas e urbanas) */
+  --destaque-prata: #c0c0c0; /* Prata para realces e detalhes */
+  --destaque-grafite: #4a4a4a; /* Grafite para botões e elementos escuros */
+  --destaque-dourado: #ffd700; /* Dourado para toques de luxo */
+
+  /* Cores de fundo e realces */
+  --fundo-claro: var(--branco-urbano); /* Fundo principal */
+  --fundo-escuro: var(--cinza-escuro); /* Fundo para seções escuras */
+}
+
+/* Reset básico */
+body,h1,h2,h3,p,a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+  background-color: var(--branco-puro);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo {
+  color: var(--cinza-escuro);
+  width: 5em;
+}
+
+.nav {
+  color: var(--cinza-escuro);
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-link:hover {
+  color: var(--destaque-grafite);
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--off-white);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-title {
+  color: var(--cinza-escuro);
+  font-size: 2.5em;
+}
+
+.hero-button {
+  background-color: var(--destaque-grafite);
+  color: var(--branco-puro);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: var(--destaque-prata);
+}
+
+.hero-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Payment Link Button */
+#button-payment-link {
+  background-color: #0070ba;
+  margin-top: 10px;
+}
+
+#button-payment-link:hover {
+  background-color: #005ea6;
+}
+
+/* Products Container - Side by Side */
+.products-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Product Card */
+.product-card {
+  background-color: var(--branco-puro);
+  border: 2px solid var(--cinza-claro);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  width: 280px;
+}
+
+.product-card:hover {
+  border-color: var(--destaque-grafite);
+  transform: translateY(-2px);
+}
+
+.product-card.selected {
+  border-color: #4CAF50;
+  border-width: 3px;
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+.product-card input[type="radio"] {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.product-selected-badge {
+  display: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.product-card.selected .product-selected-badge {
+  display: inline-block;
+}
+
+.product-title {
+  color: var(--cinza-escuro);
+}
+
+.product-price {
+  color: var(--destaque-grafite);
+  font-weight: bold;
+}
+
+.product-image {
+  width: 100%; /* Faz a imagem ocupar 100% da largura do contêiner */
+  max-width: 300px; /* Define uma largura máxima para evitar que a imagem fique muito grande */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 8px; /* Bordas arredondadas para um visual moderno */
+  object-fit: cover; /* Garante que a imagem cubra todo o espaço sem distorcer */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transição suave para efeitos hover */
+}
+
+.product-image:hover {
+  transform: scale(1.05); /* Aumenta levemente a imagem ao passar o mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para dar destaque */
+}
+
+/* Payment Method Select */
+.payment-select {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  border: 1px solid var(--cinza-claro);
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: var(--branco-puro);
+  color: var(--cinza-escuro);
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+}
+
+.payment-select:focus {
+  outline: none;
+  border-color: var(--destaque-grafite);
+  box-shadow: 0 0 0 2px rgba(74, 74, 74, 0.2);
+}
+
+/* External Payment Buttons Containers */
+#apple-pay,
+#google-pay,
+#click-to-pay {
+  margin: 20px auto;
+  max-width: 400px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#apple-pay > *,
+#google-pay > *,
+#click-to-pay > * {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Checkout Container */
+#checkout-container {
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.checkout-full-container {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.checkout-action-form {
+  max-width: 480px;
+  margin: 16px auto;
+  text-align: center;
+  min-height: 48px;
+}
+
+.checkout-action-form > * {
+  margin: 0 auto;
+}
+
+/* UI estilo Yuno (card + lista) */
+.yuno-style-card {
+  max-width: 480px;
+  margin: 0 auto 16px auto;
+  padding: 20px;
+  background: var(--branco-puro);
+  border: 1px solid var(--cinza-claro);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: left;
+}
+
+.yuno-section-title {
+  margin: 0 0 14px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cinza-escuro);
+}
+
+/* ===== Wallets sem quadrado branco (botões direto na página) ===== */
+.express-section-inline {
+  max-width: 480px;
+  margin: 24px auto 16px auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  text-align: left;
+}
+
+.express-section-inline .yuno-section-title {
+  margin-bottom: 12px;
+}
+
+.express-buttons-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.express-slot {
+  min-height: 52px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.express-slot > * {
+  width: 100% !important;
+  min-width: 100% !important;
+  min-height: 52px !important;
+  max-width: 100% !important;
+  flex: 1 1 100%;
+}
+
+/* Google Pay e Apple Pay: forçar mesma largura do container (SDK injeta botão com largura própria) */
+#google-pay,
+#apple-pay,
+#google-pay > *,
+#apple-pay > *,
+#google-pay iframe,
+#apple-pay iframe {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+
+.express-fallback {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  padding: 14px 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+}
+
+.yuno-wallet-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.yuno-wallet-slot {
+  min-height: 48px;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yuno-wallet-slot > * {
+  max-width: 100%;
+  min-height: 48px;
+}
+
+.yuno-methods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.yuno-method-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.yuno-method-item:hover {
+  background: var(--branco-urbano);
+}
+
+.yuno-method-item.selected {
+  border-color: var(--destaque-grafite);
+  background: rgba(74, 74, 74, 0.04);
+}
+
+.yuno-method-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--cinza-medio);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.yuno-method-item.selected .yuno-method-radio {
+  border-color: var(--destaque-grafite);
+  background: var(--destaque-grafite);
+}
+
+.yuno-method-item.selected .yuno-method-radio::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.yuno-method-label {
+  font-size: 15px;
+  color: var(--cinza-escuro);
+}
+
+.yuno-continue-btn {
+  margin-top: 12px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Payment Methods Container */
+#payment-methods-container {
+  margin: 20px auto;
+  max-width: 480px;
+}
+
+.payment-methods-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cinza-escuro);
+}
+
+/* Wallet buttons section (SDK v1.5: after dropdown) */
+.wallet-buttons-section {
+  margin: 24px auto;
+  max-width: 480px;
+  padding: 20px;
+  background: var(--branco-puro);
+  border: 1px solid var(--cinza-claro);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.wallet-buttons-title {
+  margin: 0 0 14px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cinza-escuro);
+}
+
+.wallet-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-slot {
+  min-height: 48px;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-slot > * {
+  max-width: 100%;
+  min-height: 48px;
+}
+
+.btn-wallet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  min-width: 140px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-wallet:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-wallet:active {
+  transform: translateY(0);
+}
+
+.btn-wallet-icon {
+  font-size: 1.2em;
+}
